@@ -55,7 +55,7 @@ public class Http extends ScriptAction implements IDocumentable {
 		}
 
 		if(requiresExtra && params.length > index) {
-			output = provider.expand(macro, params[index], false);
+			output = provider.expand(macro, params[index], false).replace("\\n","\n");
 			index++;
 		} else if(requiresExtra){
 			hasEverything = false;

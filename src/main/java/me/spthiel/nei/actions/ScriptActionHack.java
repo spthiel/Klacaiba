@@ -15,6 +15,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 @APIVersion(ModuleInfo.API_VERSION)
@@ -65,7 +66,7 @@ public class ScriptActionHack extends ScriptAction {
 
 	    actions.forEach(object::addOrPut);
 	    
-		object.addOrPut("players",ScriptedIteratorPlayers.class);
+		object.addOrPut("players", IteratorPlayers.class);
 	    
     }
 
@@ -83,7 +84,9 @@ public class ScriptActionHack extends ScriptAction {
 			    String name = f.getName();
 			    Object value = f.get(core);
 			    if(name.equalsIgnoreCase("actions")) {
-				    out.actions = (HashMap<String, IScriptAction>)value;
+					out.actions = (HashMap<String, IScriptAction>) value;
+				} else if(name.equalsIgnoreCase("iterators")) {
+			    	out.iterators = (Map<String, Class<? extends IScriptedIterator>>) value;
 			    } else if(name.equalsIgnoreCase("actionsList")) {
 				    out.actionsList = (List<IScriptAction>)value;
                 } else if(name.equalsIgnoreCase("actionRegex")) {

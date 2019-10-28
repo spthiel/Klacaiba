@@ -8,8 +8,8 @@ import net.minecraft.client.network.NetworkPlayerInfo;
 
 import java.util.Iterator;
 
-public class ScriptedIteratorPlayers extends ScriptedIterator {
-    public ScriptedIteratorPlayers(IScriptActionProvider provider, IMacro macro) {
+public class IteratorPlayers extends ScriptedIterator {
+    public IteratorPlayers(IScriptActionProvider provider, IMacro macro) {
         super(provider, macro);
         EntityPlayerSP thePlayer = this.mc.player;
         
