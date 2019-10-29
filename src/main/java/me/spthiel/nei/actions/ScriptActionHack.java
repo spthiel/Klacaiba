@@ -67,6 +67,9 @@ public class ScriptActionHack extends ScriptAction {
 	    actions.forEach(object::addOrPut);
 	    
 		object.addOrPut("players", IteratorPlayers.class);
+		object.addOrPut("teams", IteratorTeams.class);
+		object.addOrPut("objectives", IteratorObjectives.class);
+		object.addOrPut("scores", IteratorScores.class);
 	    
     }
 
@@ -120,6 +123,7 @@ public class ScriptActionHack extends ScriptAction {
 		actions.add(new Readfile());
 		actions.add(new ShowGui());
 		actions.add(new WriteFile());
+		actions.add(new Sort());
 		try {
 			addDocument();
 			System.out.println("Documentation loaded");
