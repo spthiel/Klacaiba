@@ -6,12 +6,15 @@ import me.spthiel.nei.newactions.WriteFile;
 import me.spthiel.nei.newactions.Readfile;
 import me.spthiel.nei.newactions.*;
 import me.spthiel.nei.utils.HackObject;
+
+import net.eq2online.macros.compatibility.AllowedCharacters;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptAction;
 import net.eq2online.macros.scripting.parser.ScriptContext;
 import net.eq2online.macros.scripting.parser.ScriptCore;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,8 +73,38 @@ public class ScriptActionHack extends ScriptAction {
 		object.addOrPut("teams", IteratorTeams.class);
 		object.addOrPut("objectives", IteratorObjectives.class);
 		object.addOrPut("scores", IteratorScores.class);
-	    
-    }
+	
+		try {
+			setFinalStatic(AllowedCharacters.class.getField("CHARACTERS"), buildUnicodeString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+    
+    private static String unicodeString = null;
+    
+    private static String buildUnicodeString() {
+    	if(unicodeString != null) {
+    		return unicodeString;
+		}
+    	StringBuilder out = new StringBuilder();
+    	out.append(AllowedCharacters.CHARACTERS);
+    	for(int i = 256; i <= 0xFFFF; i++) {
+    		out.append((char)i);
+		}
+    	return (unicodeString = out.toString());
+	}
+    
+    private static void setFinalStatic(Field field, Object newValue) throws Exception {
+		field.setAccessible(true);
+	
+		Field modifiersField = Field.class.getDeclaredField("modifiers");
+		modifiersField.setAccessible(true);
+		modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+	
+		field.set(null, newValue);
+	}
 
     @SuppressWarnings("unchecked")
     private static HackObject getHackObject() {
@@ -124,6 +157,8 @@ public class ScriptActionHack extends ScriptAction {
 		actions.add(new ShowGui());
 		actions.add(new WriteFile());
 		actions.add(new Sort());
+		actions.add(new Teammembers());
+		actions.add(new Score());
 		try {
 			addDocument();
 			System.out.println("Documentation loaded");

@@ -84,7 +84,6 @@ public class For extends ScriptActionDo {
 			} else {
 
 				Object o = getAndInvokeMethod("increment",state);
-				System.out.println("Object: " + o);
 
 			}
 
