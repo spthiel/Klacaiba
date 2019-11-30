@@ -2,9 +2,11 @@ package me.spthiel.nei.actions;
 
 import me.spthiel.documentor.main.DocumentorAPI;
 import me.spthiel.nei.ModuleInfo;
-import me.spthiel.nei.newactions.WriteFile;
-import me.spthiel.nei.newactions.Readfile;
-import me.spthiel.nei.newactions.*;
+import me.spthiel.nei.newactions.with.WriteFile;
+import me.spthiel.nei.newactions.with.Readfile;
+import me.spthiel.nei.newactions.with.*;
+import me.spthiel.nei.newactions.without.*;
+import me.spthiel.nei.newactions.without.exec.Exec;
 import me.spthiel.nei.utils.HackObject;
 
 import net.eq2online.macros.compatibility.AllowedCharacters;
@@ -159,6 +161,14 @@ public class ScriptActionHack extends ScriptAction {
 		actions.add(new Sort());
 		actions.add(new Teammembers());
 		actions.add(new Score());
+		actions.add(new Exec());
+		actions.add(new Countdownto());
+		actions.add(new Countdownfrom());
+		actions.add(new Counter());
+		actions.add(new Countup());
+		actions.add(new LeftPad());
+		actions.add(new TimeToSec());
+		actions.add(new SecToTime());
 		try {
 			addDocument();
 			System.out.println("Documentation loaded");

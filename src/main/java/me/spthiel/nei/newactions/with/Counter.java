@@ -1,0 +1,84 @@
+package me.spthiel.nei.newactions.with;
+
+import net.eq2online.macros.scripting.api.*;
+
+import javax.annotation.Nonnull;
+
+import java.time.Duration;
+import java.time.temporal.TemporalUnit;
+import java.util.HashMap;
+
+import me.spthiel.nei.actions.BaseScriptAction;
+import me.spthiel.nei.utils.Counting;
+import me.spthiel.nei.utils.Utils;
+
+public class Counter extends BaseScriptAction {
+    
+    private static HashMap<Integer, Counting> counters = new HashMap<>();
+    private static int                        id       = 0;
+    
+    public static int registerCounter(Counting counter) {
+        
+        counters.put(id++, counter);
+        return id - 1;
+    }
+    
+    public Counter() {
+        
+        super("counter");
+    }
+    
+    @Override
+    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+        
+        if (params.length == 0) {
+            return new ReturnValue("-1");
+        }
+        int id;
+        try {
+            id = Integer.parseInt(provider.expand(macro, params[0], false));
+        } catch (NumberFormatException e) {
+            return new ReturnValue("-1");
+        }
+        
+        if (!counters.containsKey(id)) {
+            return new ReturnValue("-1");
+        }
+        
+        long value = counters.get(id).getValue();
+        if (value < 0) {
+            counters.remove(id);
+        }
+        
+        String format = "hh:mm:ss";
+        
+        if(params.length > 1) {
+            format = provider.expand(macro, params[1], false);
+        }
+        
+        Duration duration = Duration.ofSeconds(value);
+        
+        return new ReturnValue(Utils.formatTime(duration, format));
+    }
+    
+    @Nonnull
+    @Override
+    public String getUsage() {
+        
+        return "counter(<id>,[timeformat])";
+    }
+    
+    @Nonnull
+    @Override
+    public String getDescription() {
+        
+        return "returns the value of the counter or -1 if finished or invalid. Format: dd for day, hh for hour, mm for minutes, ss for second";
+    }
+    
+    @Nonnull
+    @Override
+    public String getReturnType() {
+        
+        return "Formatted time or hh:mm:ss if none was given";
+    }
+}
