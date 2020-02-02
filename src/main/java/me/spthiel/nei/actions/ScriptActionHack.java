@@ -111,6 +111,7 @@ public class ScriptActionHack extends ScriptAction {
     @SuppressWarnings("unchecked")
     private static HackObject getHackObject() {
 
+    	
     	HackObject out = new HackObject();
 
 	    ScriptCore core = ScriptContext.MAIN.getCore();

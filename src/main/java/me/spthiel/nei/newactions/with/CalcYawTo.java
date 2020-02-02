@@ -28,7 +28,7 @@ public class CalcYawTo extends BaseScriptAction {
 				double deltaX = (double) xPos - this.mc.player.posX;
 				double deltaY = (double) yPos - this.mc.player.posY;
 				double deltaZ = (double) zPos - this.mc.player.posZ;
-				double distance = (double) MathHelper.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+				double distance = MathHelper.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
 
 
 				double dyFromEyes = deltaY + this.mc.player.getEyeHeight();
@@ -46,7 +46,7 @@ public class CalcYawTo extends BaseScriptAction {
 						yaw += 360;
 					}
 
-					varName = provider.expand(macro, params[2], false);
+					varName = provider.expand(macro, params[3], false);
 					provider.setVariable(macro, varName, yaw);
 				}
 
@@ -56,7 +56,7 @@ public class CalcYawTo extends BaseScriptAction {
 				}
 
 				if (params.length > 5) {
-					varName = provider.expand(macro, params[3], false);
+					varName = provider.expand(macro, params[5], false);
 					provider.setVariable(macro, varName, MathHelper.floor(pitchFromPlayer));
 				}
 			} else {
@@ -64,7 +64,7 @@ public class CalcYawTo extends BaseScriptAction {
 				float zPos = (float)ScriptCore.tryParseInt(provider.expand(macro, params[1], false), 0) + 0.5F;
 				double deltaX = (double)xPos - this.mc.player.posX;
 				double deltaZ = (double)zPos - this.mc.player.posZ;
-				double distance = (double)MathHelper.sqrt(deltaX * deltaX + deltaZ * deltaZ);
+				double distance = MathHelper.sqrt(deltaX * deltaX + deltaZ * deltaZ);
 
 				int yaw;
 				yaw = (int)(Math.atan2(deltaZ, deltaX) * 180.0D / 3.141592653589793D - 90.0D);

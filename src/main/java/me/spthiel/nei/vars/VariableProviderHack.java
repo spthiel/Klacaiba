@@ -1,5 +1,6 @@
 package me.spthiel.nei.vars;
 
+import com.mojang.authlib.GameProfile;
 import com.mumfrey.liteloader.core.LiteLoader;
 import me.spthiel.nei.ModuleInfo;
 import me.spthiel.nei.actions.ScriptActionHack;
@@ -8,6 +9,9 @@ import net.eq2online.macros.scripting.api.APIVersion;
 import net.eq2online.macros.scripting.parser.ScriptContext;
 import net.eq2online.macros.scripting.variable.VariableCache;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.network.NetHandlerPlayClient;
+import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.world.World;
 
 import java.io.File;
@@ -19,10 +23,15 @@ public class VariableProviderHack extends VariableCache {
     
     @Override
     public void updateVariables(boolean clock) {
+        
         if (!clock) {
             return;
         }
+    
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
+        NetworkPlayerInfo playerConnection = player.connection.getPlayerInfo(player.getUniqueID());
         
+        this.storeVariable("LATENCY", playerConnection != null ? playerConnection.getResponseTime() : 0);
         this.storeVariable("HACKED", ScriptActionHack.hacked);
         this.storeVariable("MODULENEI", true);
         this.storeVariable("MINECRAFTDIR", LiteLoader.getGameDirectory().getAbsolutePath() + File.separator);

@@ -6,5 +6,6 @@ modules/
 build/
 .gradle/
 classes/
+run/
 
 *.iml

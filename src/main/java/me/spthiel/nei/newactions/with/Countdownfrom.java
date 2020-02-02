@@ -27,7 +27,7 @@ public class Countdownfrom extends BaseScriptAction {
             return null;
         }
     
-        String    time       = params[0];
+        String    time       = provider.expand(macro, params[0], false);
         LocalTime targettime = LocalTime.parse(time, timeFormatter);
         LocalDateTime target    = LocalDateTime.now()
                                                 .plusHours(targettime.getHour())

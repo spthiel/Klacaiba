@@ -2,7 +2,6 @@ package me.spthiel.nei.newactions.with;
 
 import me.spthiel.nei.JSON.JSONArray;
 import me.spthiel.nei.JSON.JSONObject;
-import me.spthiel.nei.actions.BaseScriptAction;
 import me.spthiel.nei.actions.IDocumentable;
 
 import net.eq2online.macros.scripting.api.*;
@@ -12,16 +11,22 @@ import net.eq2online.macros.scripting.parser.ScriptContext;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
-public class GetJsonAsArray extends BaseScriptAction {
+public class GetJsonAsArray extends ScriptAction implements IDocumentable {
 
 	public GetJsonAsArray() {
-		super("getjsonasarray");
+		super(ScriptContext.MAIN, "getjsonasarray");
 	}
 
 	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 
 		if(params.length > 0) {
 
+			String format = "$key:$value";
+			
+			if(params.length > 1) {
+				format = provider.expand(macro, params[1], false);
+			}
+			
 			String json = provider.expand(macro, params[0],false);
 
 			if(json.startsWith("[")) {
@@ -44,7 +49,7 @@ public class GetJsonAsArray extends BaseScriptAction {
 			out.add("OBJECT");
 
 			for(String key : object.keySet()) {
-				out.add(key + ":" + object.get(key).toString());
+				out.add(format.replace("$key", key).replace("$value", object.get(key).toString()));
 			}
 
 			return returnValue(provider, macro, out);
@@ -71,14 +76,14 @@ public class GetJsonAsArray extends BaseScriptAction {
 	@Override
 	public String getUsage() {
 		
-		return "getjsonasarray(<json>)";
+		return "getjsonasarray(<json>,[format])";
 	}
 	
 	@Nonnull
 	@Override
 	public String getDescription() {
 		
-		return "Returns the input json as array";
+		return "Returns the input json as array. With the specified format default $key:$value";
 	}
 	
 	@Nonnull

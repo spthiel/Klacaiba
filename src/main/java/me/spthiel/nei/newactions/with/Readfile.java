@@ -43,7 +43,7 @@ public class Readfile extends BaseScriptAction {
 		}
 
 		ArrayList<String> list = new ArrayList<>();
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
 			String sCurrentLine;
 			while ((sCurrentLine = br.readLine()) != null) {

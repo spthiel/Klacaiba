@@ -1,5 +1,6 @@
 package me.spthiel.nei.newactions.with;
 
+import me.spthiel.nei.actions.BaseConditionalOperator;
 import me.spthiel.nei.actions.BaseScriptAction;
 import me.spthiel.nei.actions.IDocumentable;
 import me.spthiel.nei.utils.FilePath;
@@ -15,14 +16,14 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 
-public class IfFileExists extends BaseScriptAction {
+public class IfFileExists extends BaseConditionalOperator {
 
 	public IfFileExists() {
 		super("iffileexists");
 	}
 
 	public String getExpectedPopCommands() {
-		return I18n.get("script.error.stackhint", this, "ELSEIF§c, §dELSE§c or §dENDIF");
+		return I18n.get("script.error.stackhint", this, "ELSEIF\u00A7c, \u00A7dELSE\u00A7c or \u00A7dENDIF");
 	}
 
 	public boolean isConditionalOperator() {
