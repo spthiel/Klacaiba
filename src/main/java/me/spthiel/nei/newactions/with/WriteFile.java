@@ -24,12 +24,20 @@ public class WriteFile extends BaseScriptAction {
 		if(params.length < 2) {
 			return new ReturnValue("Too few arguments");
 		}
-
-		String filename = provider.expand(macro, params[1], false);
-		String arrayName = Variable.getValidVariableOrArraySpecifier(params[0]);
+		
+		String filename = provider.expand(macro, params[0], false);
+		String arrayName = provider.expand(macro, params[1], false);
+		if(provider.getArrayExists(macro, filename)) {
+			String store = arrayName;
+			arrayName = Variable.getValidVariableOrArraySpecifier(filename);
+			filename = store;
+		} else {
+			arrayName = Variable.getValidVariableOrArraySpecifier(arrayName);
+		}
+		
 		boolean append = params.length > 2 && provider.expand(macro, params[2], false).toLowerCase().matches("true|1|t");
 
-		if(!provider.getArrayExists(macro, params[1])) {
+		if(!provider.getArrayExists(macro, arrayName)) {
 			return new ReturnValue("ERROR_ARG_NOT_ARRAY");
 		}
 
@@ -54,7 +62,7 @@ public class WriteFile extends BaseScriptAction {
 		try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file,append))) {
 
 			for(String line : toWrite) {
-				bufferedWriter.write(line);
+				bufferedWriter.write(line + "\n");
 			}
 
 		} catch (IOException e) {
@@ -70,7 +78,7 @@ public class WriteFile extends BaseScriptAction {
 	@Override
 	public String getUsage() {
 		
-		return "writefile(<&array[]>,<path>,[append])";
+		return "writefile(<path>,<&array[]>,[append])";
 	}
 	
 	@Nonnull
@@ -84,6 +92,6 @@ public class WriteFile extends BaseScriptAction {
 	@Override
 	public String getReturnType() {
 		
-		return "";
+		return "Error code or file path on success";
 	}
 }
