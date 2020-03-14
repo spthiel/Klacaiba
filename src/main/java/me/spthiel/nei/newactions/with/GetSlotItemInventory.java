@@ -1,58 +1,62 @@
 package me.spthiel.nei.newactions.with;
 
-import net.eq2online.macros.scripting.actions.game.ScriptActionGetSlotItem;
 import net.eq2online.macros.scripting.api.*;
-import net.eq2online.macros.scripting.parser.ScriptAction;
-import net.eq2online.macros.scripting.parser.ScriptContext;
 import net.eq2online.macros.scripting.parser.ScriptCore;
 import net.eq2online.util.Game;
+import net.minecraft.client.Minecraft;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextComponentString;
 
 import javax.annotation.Nonnull;
 
+import java.util.List;
+
 import me.spthiel.nei.actions.BaseScriptAction;
-import me.spthiel.nei.actions.IDocumentable;
 import me.spthiel.nei.utils.Utils;
 
-public class GetSlotItem extends BaseScriptAction {
+public class GetSlotItemInventory extends BaseScriptAction {
 
-	public GetSlotItem() {
-		super("getslotitem");
+	public GetSlotItemInventory() {
+		super("getslotiteminv");
 	}
 
 	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		ItemStack slotStack = null;
 		if (params.length > 0) {
 			int slotId = Math.max(0, ScriptCore.tryParseInt(provider.expand(macro, params[0], false), 0));
-			slotStack = this.slotHelper.getSlotStack(slotId);
-			
+			slotStack = getStackFromSurvivalInventory(slotId, Minecraft.getMinecraft().player.inventoryContainer);
 		}
-
+		
 		return Utils.getItemReturnValue(provider, macro, params, slotStack);
-	}
-
-	public boolean isPermissable() {
-		return true;
-	}
-
-	public String getPermissionGroup() {
-		return "inventory";
+    }
+	/*
+	 * Copied from SlotHelper.class
+	 */
+    private ItemStack getStackFromSurvivalInventory(int slotId, Container survivalInventory) {
+		List<Slot> itemStacks = survivalInventory.inventorySlots;
+		if (slotId >= 0 && slotId < itemStacks.size()) {
+            return itemStacks.get(slotId).getStack();
+		}
+		
+		return null;
 	}
 	
 	@Nonnull
 	@Override
 	public String getUsage() {
 		
-		return "getslot(<slotid>,<&idvar>,[#stacksizevar],[#datavar],[&nbt])";
+		return "getslotiteminv(<slotid>,<&idvar>,[#stacksizevar],[#datavar],[&nbt])";
 	}
 	
 	@Nonnull
 	@Override
 	public String getDescription() {
 		
-		return "Gets information about the item in the specified slot";
+		return "Gets information about the item in the specified slot of the survival inventory (at all time)";
 	}
 	
 	@Nonnull

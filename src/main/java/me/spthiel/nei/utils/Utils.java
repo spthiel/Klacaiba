@@ -1,5 +1,14 @@
 package me.spthiel.nei.utils;
 
+import net.eq2online.macros.scripting.api.IMacro;
+import net.eq2online.macros.scripting.api.IReturnValue;
+import net.eq2online.macros.scripting.api.IScriptActionProvider;
+import net.eq2online.macros.scripting.api.ReturnValue;
+import net.eq2online.util.Game;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import java.time.Duration;
 
 public class Utils {
@@ -42,5 +51,44 @@ public class Utils {
                      .replace("hh", String.format("%02d", hour))
                      .replace("mm", String.format("%02d", minute))
                      .replace("ss", String.format("%02d", second));
+    }
+    
+    public static IReturnValue getItemReturnValue(IScriptActionProvider provider, IMacro macro, String[] params, ItemStack slotStack) {
+        return getItemReturnValue(provider, macro, params, slotStack, 1);
+    }
+    
+    public static IReturnValue getItemReturnValue(IScriptActionProvider provider, IMacro macro, String[] params, ItemStack slotStack, int start) {
+    
+        String itemID = "unknown";
+        int stackSize = 0;
+        int damage = 0;
+        String tag = "null";
+        if (slotStack == null) {
+            itemID = Game.getItemName((Item)null);
+        } else {
+            itemID = Game.getItemName(slotStack.getItem());
+            stackSize = slotStack.getCount();
+            damage = slotStack.getMetadata();
+            NBTTagCompound tagCompound = slotStack.getTagCompound();
+            tag = (tagCompound == null ? "null" : tagCompound.toString());
+        }
+        
+        if (params.length > start++) {
+            provider.setVariable(macro, provider.expand(macro, params[1], false), itemID);
+        }
+        
+        if (params.length > start++) {
+            provider.setVariable(macro, provider.expand(macro, params[2], false), stackSize);
+        }
+        
+        if (params.length > start++) {
+            provider.setVariable(macro, provider.expand(macro, params[3], false), damage);
+        }
+        
+        if (params.length > start) {
+            provider.setVariable(macro, provider.expand(macro, params[4], false), tag);
+        }
+    
+        return new ReturnValue(itemID);
     }
 }

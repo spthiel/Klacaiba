@@ -114,6 +114,7 @@ public class ScriptActionHack extends ScriptAction {
         object.addOrPut("teams", IteratorTeams.class);
         object.addOrPut("objectives", IteratorObjectives.class);
         object.addOrPut("scores", IteratorScores.class);
+        object.addOrPut("trades", IteratorTrades.class);
         
         try {
             setFinalStatic(AllowedCharacters.class.getField("CHARACTERS"), buildUnicodeString());
@@ -212,6 +213,14 @@ public class ScriptActionHack extends ScriptAction {
         actions.add(new LeftPad());
         actions.add(new TimeToSec());
         actions.add(new SecToTime());
+        actions.add(new GetSlotItemInventory());
+        actions.add(new GetSlotInventory());
+        actions.add(new IfInvIsFull());
+        actions.add(new GetSlotItemInventory());
+        actions.add(new GetMouseItem());
+        actions.add(new GetEmptySlots());
+        actions.add(new GetChestName());
+        
         try {
             addDocument();
             documented = true;
