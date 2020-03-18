@@ -73,22 +73,27 @@ public class Utils {
             tag = (tagCompound == null ? "null" : tagCompound.toString());
         }
         
-        if (params.length > start++) {
-            provider.setVariable(macro, provider.expand(macro, params[1], false), itemID);
-        }
+        Object[] out = {
+            itemID,
+            stackSize,
+            damage,
+            tag
+        };
         
-        if (params.length > start++) {
-            provider.setVariable(macro, provider.expand(macro, params[2], false), stackSize);
-        }
-        
-        if (params.length > start++) {
-            provider.setVariable(macro, provider.expand(macro, params[3], false), damage);
-        }
-        
-        if (params.length > start) {
-            provider.setVariable(macro, provider.expand(macro, params[4], false), tag);
-        }
+        setParams(macro, provider, params, out, start);
     
         return new ReturnValue(itemID);
+    }
+    
+    public static void setParams(IMacro macro, IScriptActionProvider provider, String[] params, Object[] value, int start) {
+        for(int i = start; i < params.length; i++) {
+            int idx = i-start;
+            Object obj = value[idx];
+            if(obj instanceof Integer) {
+                provider.setVariable(macro, provider.expand(macro, params[i], false), (int)obj);
+            } else {
+                provider.setVariable(macro, provider.expand(macro, params[i], false), obj.toString());
+            }
+        }
     }
 }
