@@ -220,6 +220,7 @@ public class ScriptActionHack extends ScriptAction {
         actions.add(new GetMouseItem());
         actions.add(new GetEmptySlots());
         actions.add(new GetChestName());
+        actions.add(new GetFishHook());
         
         try {
             addDocument();

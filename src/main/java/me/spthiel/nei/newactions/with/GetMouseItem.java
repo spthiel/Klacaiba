@@ -29,17 +29,6 @@ public class GetMouseItem extends BaseScriptAction {
         return Utils.getItemReturnValue(provider, macro, params, slotStack, 0);
     }
     
-    private int calculateEmptyInventorySlots(boolean includeNonFullStacks) {
-        InventoryPlayer inventory      = Minecraft.getMinecraft().player.inventory;
-        return (int)inventory.mainInventory.stream()
-                .filter(stack -> stack.isEmpty() || (includeNonFullStacks && stack.getMaxStackSize() > stack.getCount()))
-                .count();
-    }
-    
-    private EntityFishHook getFishHook() {
-        return Minecraft.getMinecraft().player.fishEntity;
-    }
-    
     @Nonnull
     @Override
     public String getUsage() {
