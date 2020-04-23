@@ -37,7 +37,7 @@ public class VariableProviderHack extends VariableCache {
         this.storeVariable("MINECRAFTDIR", LiteLoader.getGameDirectory().getAbsolutePath() + File.separator);
         this.storeVariable("MACROSCONFIGDIR", (Macros.getInstance().getMacrosDirectory().getAbsolutePath()));
         this.storeVariable("FILESEPARATOR", File.separator);
-    
+        
         World theWorld = Minecraft.getMinecraft().world;
         if(!(lastWorld == null && theWorld == null) && ((lastWorld == null || theWorld == null) || !lastWorld.getWorldInfo().getWorldName().equalsIgnoreCase(theWorld.getWorldInfo().getWorldName()))) {
         

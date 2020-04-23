@@ -34,7 +34,7 @@ public class LogTo extends ScriptAction {
 			} catch (Exception ignored) {
 			}
 		}
-
+		
 	}
 
 	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
