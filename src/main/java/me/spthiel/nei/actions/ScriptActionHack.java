@@ -216,11 +216,13 @@ public class ScriptActionHack extends ScriptAction {
         actions.add(new GetSlotItemInventory());
         actions.add(new GetSlotInventory());
         actions.add(new IfInvIsFull());
+        actions.add(new IfEnchanted());
         actions.add(new GetSlotItemInventory());
         actions.add(new GetMouseItem());
         actions.add(new GetEmptySlots());
         actions.add(new GetChestName());
         actions.add(new GetFishHook());
+        actions.add(new SetSlotItem());
         
         try {
             addDocument();

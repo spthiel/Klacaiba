@@ -10,11 +10,16 @@ import net.eq2online.macros.scripting.parser.ScriptContext;
 import net.eq2online.macros.scripting.parser.ScriptCore;
 import net.minecraft.item.ItemStack;
 
-public class IfEnchanted extends ScriptActionIf {
+import javax.annotation.Nonnull;
+
+import me.spthiel.nei.actions.BaseConditionalOperator;
+import me.spthiel.nei.utils.Utils;
+
+public class IfEnchanted extends BaseConditionalOperator {
     
-    protected IfEnchanted() {
+    public IfEnchanted() {
         
-        super(ScriptContext.MAIN, "ifenchanted");
+        super("ifenchanted");
     }
     
     public String getExpectedPopCommands() {
@@ -32,13 +37,29 @@ public class IfEnchanted extends ScriptActionIf {
         if (params.length > 0) {
             int slotId = Math.max(0, ScriptCore.tryParseInt(provider.expand(macro, params[0], false), 0));
             slotStack = this.slotHelper.getSlotStack(slotId);
-        
         }
+        Utils.getItemReturnValue(provider, macro, params, slotStack);
         return slotStack != null && slotStack.isItemEnchanted();
     }
     
+    @Nonnull
     @Override
-    public void onInit() {
-        this.context.getCore().registerScriptAction(this);
+    public String getUsage() {
+        
+        return "ifenchanted(<slotid>,[&item],[#stacksize],[#datavar],[&nbt])";
+    }
+    
+    @Nonnull
+    @Override
+    public String getDescription() {
+        
+        return "Checks if the item is enchanted";
+    }
+    
+    @Nonnull
+    @Override
+    public String getReturnType() {
+        
+        return "";
     }
 }

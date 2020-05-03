@@ -59,7 +59,7 @@ public class GetFishHook extends BaseScriptAction {
     @Override
     public String getUsage() {
         
-        return "getfishhook([#x],[#xprecision],[#y],[#yprecision],[#z],[#zprecision])";
+        return "[#ytotal =] getfishhook([#x],[#xprecision],[#y],[#yprecision],[#z],[#zprecision])";
     }
     
     @Nonnull

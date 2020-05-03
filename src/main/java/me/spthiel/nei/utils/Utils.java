@@ -88,7 +88,12 @@ public class Utils {
     public static void setParams(IMacro macro, IScriptActionProvider provider, String[] params, Object[] value, int start) {
         for(int i = start; i < params.length; i++) {
             int idx = i-start;
-            Object obj = value[idx];
+            Object obj;
+            if(idx >= value.length) {
+                obj = "INVALID_ARG";
+            } else {
+                obj = value[idx];
+            }
             if(obj instanceof Integer) {
                 provider.setVariable(macro, provider.expand(macro, params[i], false), (int)obj);
             } else {
