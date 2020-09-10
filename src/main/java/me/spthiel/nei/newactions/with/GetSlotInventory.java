@@ -78,7 +78,7 @@ public class GetSlotInventory extends BaseScriptAction {
 	@Override
 	public String getUsage() {
 		
-		return "getslotinv(<item[:damage],<#idvar>,[startfromslotid])";
+		return "getslotinv(<item[:damage]>,<#idvar>,[startfromslotid])";
 	}
 	
 	@Nonnull

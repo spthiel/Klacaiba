@@ -41,7 +41,7 @@ public class LogTo extends ScriptAction {
 		if (params.length > 1) {
 			String target = provider.expand(macro, params[0], false);
 			String fileName;
-			if (!target.toLowerCase().endsWith(".txt")) {
+			if (!target.contains(".")) {
 				fileName = Util.convertAmpCodes(provider.expand(macro, params[1], false));
 				return new ReturnValueLogTo(fileName, target);
 			}

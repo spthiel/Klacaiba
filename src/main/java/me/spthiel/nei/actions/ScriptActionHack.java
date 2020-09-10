@@ -223,6 +223,13 @@ public class ScriptActionHack extends ScriptAction {
         actions.add(new GetChestName());
         actions.add(new GetFishHook());
         actions.add(new SetSlotItem());
+        actions.add(new GetId());
+        actions.add(new GetIdRel());
+        actions.add(new Particle());
+        actions.add(new me.spthiel.nei.newactions.with.Map());
+        actions.add(new CountInvItem());
+        actions.add(new CountItem());
+        actions.add(new Pexec());
         
         try {
             addDocument();

@@ -9,6 +9,7 @@ import net.eq2online.macros.scripting.parser.ScriptAction;
 import net.eq2online.macros.scripting.parser.ScriptContext;
 
 import javax.annotation.Nonnull;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class GetJsonAsArray extends ScriptAction implements IDocumentable {
@@ -34,8 +35,8 @@ public class GetJsonAsArray extends ScriptAction implements IDocumentable {
 				ArrayList<String> out = new ArrayList<>();
 
 				out.add("ARRAY");
-
-				for(Object object : array.toList()) {
+				
+				for(Object object : array) {
 					out.add(object.toString());
 				}
 

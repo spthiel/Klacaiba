@@ -36,7 +36,7 @@ public class IfFileExists extends BaseConditionalOperator {
 			return false;
 		}
 
-		File file = FilePath.getFile(params[0]);
+		File file = FilePath.getFile(provider.expand(macro, params[0], false));
 
 		if(file.exists()) {
 			return true;

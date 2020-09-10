@@ -80,7 +80,7 @@ public class EventProviderOnSound implements IMacroEventProvider, IMacroEventVar
         
         ISound sound = sounds.get(id);
         sounds.remove(id);
-    
+        
         vars.put("SOUNDXPOSF", sound.getXPosF());
         vars.put("SOUNDYPOSF", sound.getYPosF());
         vars.put("SOUNDZPOSF", sound.getZPosF());

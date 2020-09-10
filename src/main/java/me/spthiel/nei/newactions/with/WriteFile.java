@@ -50,7 +50,7 @@ public class WriteFile extends BaseScriptAction {
 
 		if(!file.exists()) {
 			try {
-				if(!file.getParentFile().mkdirs() || !file.createNewFile()) {
+				if((!file.getParentFile().exists() && !file.getParentFile().mkdirs()) || !file.createNewFile()) {
 					return new ReturnValue("ERROR_UNABLE_TO_CREATE");
 				}
 			} catch (IOException e) {

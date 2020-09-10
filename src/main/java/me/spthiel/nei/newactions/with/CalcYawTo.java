@@ -57,7 +57,7 @@ public class CalcYawTo extends BaseScriptAction {
 
 				if (params.length > 5) {
 					varName = provider.expand(macro, params[5], false);
-					provider.setVariable(macro, varName, MathHelper.floor(pitchFromPlayer));
+					provider.setVariable(macro, varName, MathHelper.floor(360-pitchFromPlayer));
 				}
 			} else {
 				float xPos = (float)ScriptCore.tryParseInt(provider.expand(macro, params[0], false), 0) + 0.5F;
