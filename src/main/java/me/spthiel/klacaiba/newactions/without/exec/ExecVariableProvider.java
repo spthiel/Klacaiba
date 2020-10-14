@@ -1,17 +1,13 @@
-package me.spthiel.nei.newactions.without.exec;
+package me.spthiel.klacaiba.newactions.without.exec;
 
 import net.eq2online.macros.core.MacroExecVariableProvider;
 import net.eq2online.macros.scripting.api.IMacro;
 import net.eq2online.macros.scripting.api.IScriptActionProvider;
-import net.eq2online.macros.scripting.api.IVariableProvider;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
-
-import me.spthiel.nei.actions.BaseScriptAction;
 
 public class ExecVariableProvider extends MacroExecVariableProvider {
     

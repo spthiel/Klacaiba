@@ -1,4 +1,4 @@
-package me.spthiel.nei.newactions.with;
+package me.spthiel.klacaiba.newactions.with;
 
 import net.eq2online.macros.scripting.api.*;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import me.spthiel.nei.actions.BaseScriptAction;
+import me.spthiel.klacaiba.actions.BaseScriptAction;
 
 public class Countdownto extends BaseScriptAction {
     
@@ -53,7 +53,7 @@ public class Countdownto extends BaseScriptAction {
         }
 
         LocalDateTime target = targetdate.atTime(targettime);
-        return new ReturnValue(Counter.registerCounter(new me.spthiel.nei.utils.Countdown(target)));
+        return new ReturnValue(Counter.registerCounter(new me.spthiel.klacaiba.utils.Countdown(target)));
         
     }
     

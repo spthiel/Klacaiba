@@ -1,7 +1,5 @@
-package me.spthiel.nei.actions;
+package me.spthiel.klacaiba.actions;
 
-import net.eq2online.macros.scripting.api.IMacro;
-import net.eq2online.macros.scripting.api.IScriptActionProvider;
 import net.eq2online.macros.scripting.parser.ScriptAction;
 import net.eq2online.macros.scripting.parser.ScriptContext;
 

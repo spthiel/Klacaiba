@@ -1,4 +1,4 @@
-package me.spthiel.nei.actions;
+package me.spthiel.klacaiba.actions;
 
 import javax.annotation.Nonnull;
 

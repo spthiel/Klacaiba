@@ -1,15 +1,8 @@
-package me.spthiel.nei.events;
+package me.spthiel.klacaiba.events;
 
-import com.jcraft.jogg.Packet;
 import com.mumfrey.liteloader.ChatListener;
-import com.mumfrey.liteloader.PacketHandler;
 import com.mumfrey.liteloader.client.PacketEventsClient;
 import com.mumfrey.liteloader.core.PacketEvents;
-import com.mumfrey.liteloader.core.event.HandlerList;
-import com.mumfrey.liteloader.core.runtime.Packets;
-import net.eq2online.macros.core.Macros;
-import net.eq2online.macros.event.MacroEventManager;
-import net.eq2online.macros.interfaces.IChatEventListener;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptContext;
 import net.eq2online.macros.scripting.parser.ScriptCore;
@@ -20,7 +13,7 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import me.spthiel.nei.ModuleInfo;
+import me.spthiel.klacaiba.ModuleInfo;
 
 @APIVersion(ModuleInfo.API_VERSION)
 public class EventProviderOnBetterChat implements IMacroEventProvider, IMacroEventVariableProvider, ChatListener {

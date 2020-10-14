@@ -1,16 +1,15 @@
-package me.spthiel.nei.newactions.with;
+package me.spthiel.klacaiba.newactions.with;
 
 import net.eq2online.macros.scripting.api.*;
 
 import javax.annotation.Nonnull;
 
 import java.time.Duration;
-import java.time.temporal.TemporalUnit;
 import java.util.HashMap;
 
-import me.spthiel.nei.actions.BaseScriptAction;
-import me.spthiel.nei.utils.Counting;
-import me.spthiel.nei.utils.Utils;
+import me.spthiel.klacaiba.actions.BaseScriptAction;
+import me.spthiel.klacaiba.utils.Counting;
+import me.spthiel.klacaiba.utils.Utils;
 
 public class Counter extends BaseScriptAction {
     

@@ -1,13 +1,13 @@
-package me.spthiel.nei.actions;
+package me.spthiel.klacaiba.actions;
 
 import me.spthiel.documentor.main.DocumentorAPI;
-import me.spthiel.nei.ModuleInfo;
-import me.spthiel.nei.newactions.with.WriteFile;
-import me.spthiel.nei.newactions.with.Readfile;
-import me.spthiel.nei.newactions.with.*;
-import me.spthiel.nei.newactions.without.*;
-import me.spthiel.nei.newactions.without.exec.Exec;
-import me.spthiel.nei.utils.HackObject;
+import me.spthiel.klacaiba.ModuleInfo;
+import me.spthiel.klacaiba.newactions.with.WriteFile;
+import me.spthiel.klacaiba.newactions.with.Readfile;
+import me.spthiel.klacaiba.newactions.with.*;
+import me.spthiel.klacaiba.newactions.without.*;
+import me.spthiel.klacaiba.newactions.without.exec.Exec;
+import me.spthiel.klacaiba.utils.HackObject;
 
 import net.eq2online.macros.compatibility.AllowedCharacters;
 import net.eq2online.macros.scripting.api.*;
@@ -57,7 +57,7 @@ public class ScriptActionHack extends ScriptAction {
             if(!documented) {
             	
                 try {
-                    ITextComponent line1 = new TextComponentString("[WARN] NotEnoughInformation\n").setStyle(new Style().setColor(TextFormatting.RED));
+                    ITextComponent line1 = new TextComponentString("[WARN] Klacaiba\n").setStyle(new Style().setColor(TextFormatting.RED));
                     ITextComponent line2 = new TextComponentString("[WARN] Documentor not found but highly advised for ingame syntax lookup\n").setStyle(new Style().setColor(TextFormatting.RED));
                     ITextComponent line3 = new TextComponentString("[WARN] Click ").setStyle(new Style().setColor(TextFormatting.RED));
                     ITextComponent line32 = new TextComponentString(" to get to the download page for the module.").setStyle(new Style().setColor(TextFormatting.RED));
@@ -91,7 +91,7 @@ public class ScriptActionHack extends ScriptAction {
     
     private void addDocument() throws ClassNotFoundException {
         
-        DocumentorAPI api = new DocumentorAPI("notEnoughInformation");
+        DocumentorAPI api = new DocumentorAPI("klacaiba");
         
         actions.stream()
                .filter(action -> action instanceof IDocumentable)
@@ -226,10 +226,11 @@ public class ScriptActionHack extends ScriptAction {
         actions.add(new GetId());
         actions.add(new GetIdRel());
         actions.add(new Particle());
-        actions.add(new me.spthiel.nei.newactions.with.Map());
+        actions.add(new me.spthiel.klacaiba.newactions.with.Map());
         actions.add(new CountInvItem());
         actions.add(new CountItem());
         actions.add(new Pexec());
+        actions.add(new Mexec());
         actions.add(new CreateControl());
         actions.add(new DeleteControl());
         actions.add(new GetItemInfo());

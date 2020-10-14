@@ -1,4 +1,4 @@
-package me.spthiel.nei.newactions.without.exec;
+package me.spthiel.klacaiba.newactions.without.exec;
 
 import java.io.File;
 import net.eq2online.macros.core.MacroIncludeProcessor;
