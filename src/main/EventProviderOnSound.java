@@ -1,4 +1,4 @@
-package me.spthiel.nei.events;
+package me.spthiel.klacaiba.events;
 
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptContext;
@@ -12,7 +12,7 @@ import net.minecraft.util.StringUtils;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import me.spthiel.nei.ModuleInfo;
+import me.spthiel.klacaiba.ModuleInfo;
 
 @APIVersion(ModuleInfo.API_VERSION)
 public class EventProviderOnSound implements IMacroEventProvider, IMacroEventVariableProvider, ISoundEventListener {
