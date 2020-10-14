@@ -75,24 +75,6 @@ public class CreateControl extends BaseScriptAction {
 		}
 		
 		if (layout.isCellOccupied(new Point(row, column))) {
-			if (row >= 0 && column >= 0 && row < layout.getRows() && column < layout.getColumns()) {
-				Iterator var4 = layout.getControls().iterator();
-				
-				DesignableGuiControl control = null;
-				do {
-					if (!var4.hasNext()) {
-						System.out.println("False");
-						break;
-					}
-					
-					control = (DesignableGuiControl)var4.next();
-				} while(null == control || !control.cccupies(row, column));
-				
-				System.out.println("Null: " + (control == null));
-				System.out.println("Occupies: " + !control.cccupies(row, column));
-			} else {
-				System.out.println("True");;
-			}
 			return new ReturnValue("Cell is occupied");
 		}
 		
