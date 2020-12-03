@@ -234,6 +234,7 @@ public class ScriptActionHack extends ScriptAction {
         actions.add(new CreateControl());
         actions.add(new DeleteControl());
         actions.add(new GetItemInfo());
+        actions.add(new TimestampToDate());
         
         try {
             addDocument();

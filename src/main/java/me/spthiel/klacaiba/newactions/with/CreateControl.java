@@ -74,7 +74,7 @@ public class CreateControl extends BaseScriptAction {
 					.collect(Collectors.joining(", ")));
 		}
 		
-		if (layout.isCellOccupied(new Point(row, column))) {
+		if (layout.isCellOccupied(new Point(column, row))) {
 			return new ReturnValue("Cell is occupied");
 		}
 		

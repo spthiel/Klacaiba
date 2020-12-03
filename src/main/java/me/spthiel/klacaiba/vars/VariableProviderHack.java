@@ -10,6 +10,7 @@ import net.eq2online.macros.scripting.variable.VariableCache;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.world.World;
 
 import java.io.File;
@@ -42,6 +43,7 @@ public class VariableProviderHack extends VariableCache {
             ScriptActionHack.hack();
             lastWorld = theWorld;
         }
+        
     }
 
     @Override
