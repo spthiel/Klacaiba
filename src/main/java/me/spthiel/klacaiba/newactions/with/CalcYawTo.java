@@ -27,7 +27,7 @@ public class CalcYawTo extends BaseScriptAction {
 				double distance = MathHelper.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
 
 
-				double dyFromEyes = deltaY + this.mc.player.getEyeHeight();
+				double dyFromEyes = deltaY - this.mc.player.getEyeHeight();
 				double pitchFromPlayer = (Math.atan2(dyFromEyes, Math.sqrt(deltaX * deltaX + deltaZ * deltaZ)) * 180.0D / Math.PI);
 				while (pitchFromPlayer < 0)
 					pitchFromPlayer += 360;

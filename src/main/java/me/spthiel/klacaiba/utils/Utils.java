@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import java.time.Duration;
+import java.util.function.Consumer;
 
 public class Utils {
     
@@ -99,6 +100,13 @@ public class Utils {
             } else {
                 provider.setVariable(macro, provider.expand(macro, params[i], false), obj.toString());
             }
+        }
+    }
+    
+    public static void forEachArray(IScriptActionProvider provider, IMacro macro, String arrayName, Consumer<Object> consumer) {
+        int size = provider.getArraySize(macro, arrayName);
+        for (int i = 0 ; i < size ; i++) {
+            consumer.accept(provider.getArrayElement(macro, arrayName, i));
         }
     }
 }
