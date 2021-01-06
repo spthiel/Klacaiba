@@ -39,6 +39,6 @@ public class Put extends Push {
 	@Override
 	public String getDescription() {
 		
-		return "Inserts value[s] at the first empty point in array. Values may be constants, array[*] to copy an entire array or array[a-b] to copy a <= indexes < b to new array.";
+		return "Inserts value[s] at the first empty point in array. Values may be constants, array[*] to copy an entire array or array[a:b:step] to copy a <= indexes < b to new array. Negative values wrap around.";
 	}
 }

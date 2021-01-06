@@ -5,6 +5,7 @@ import net.eq2online.macros.scripting.actions.lang.ScriptActionPush;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptCore;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.TextComponentString;
 
 import javax.annotation.Nonnull;
 
@@ -39,7 +40,7 @@ public class Push extends BaseScriptAction {
 		return null;
 	}
 	
-	private static final Pattern ARRAYPATTERN = Pattern.compile("(@?(?:|#|&)\\w[\\w\\d_-]+)\\[(\\*|(?:\\d+:)*\\d+)\\]");
+	private static final Pattern ARRAYPATTERN = Pattern.compile("(@?(?:|#|&)\\w[\\w\\d_-]+)\\[(\\*|-?\\d+(?::(?:-?\\d+)?){0,2})?]");
 	
 	protected void evaluateParam(IScriptActionProvider provider, IMacro macro, String parameter, Consumer<Object> addCallback) {
 		Matcher m;
@@ -51,11 +52,23 @@ public class Push extends BaseScriptAction {
 				int arraySize = provider.getArraySize(macro, arrayName);
 				int end = arraySize;
 				int step = 1;
-				if (!range.equals("*")) {
+				if (range.matches("-?\\d+")) {
+					start = Math.min(Math.max(Integer.parseInt(range), -arraySize), arraySize);
+					if (start < 0) {
+						start = arraySize + start;
+					}
+					end = start+1;
+				} else if (!range.equals("*")) {
 					String[] splitted = range.split(":");
 					start = Math.max(Math.min(ScriptCore.tryParseInt(splitted[0], 0), arraySize), -arraySize);
-					if (splitted.length > 1) {
-						end = splitted[1].matches("") ? arraySize : Math.max(Math.min(ScriptCore.tryParseInt(splitted[1], 0), arraySize), -arraySize);
+					if (splitted.length > 1 && splitted[1].matches("-?\\d+")) {
+						end = Math.max(Math.min(ScriptCore.tryParseInt(splitted[1], 0), arraySize), -arraySize);
+					}
+					if (splitted.length > 2) {
+						step = ScriptCore.tryParseInt(splitted[2], 1);
+						if (step == 0) {
+							step = 1;
+						}
 					}
 					if (start < 0) {
 						start = arraySize + start;
@@ -67,12 +80,6 @@ public class Push extends BaseScriptAction {
 						int store = end;
 						end = start;
 						start = store;
-					}
-					if (splitted.length > 2) {
-						step = ScriptCore.tryParseInt(splitted[2], 1);
-						if (step == 0) {
-							step = 1;
-						}
 					}
 					if (step < 0) {
 						int store = end;
@@ -89,9 +96,16 @@ public class Push extends BaseScriptAction {
 	
 	private void copyArrayTo(IScriptActionProvider provider, IMacro macro, int startIndex, int endIndex, int step, String arrayName, Consumer<Object> addCallback) {
 		
-		for (int i = startIndex ; i < endIndex; i++) {
-			Object o = provider.getArrayElement(macro, arrayName, i);
-			addCallback.accept(o);
+		if (step > 0) {
+			for (int i = startIndex ; i < endIndex ; i += step) {
+				Object o = provider.getArrayElement(macro, arrayName, i);
+				addCallback.accept(o);
+			}
+		} else {
+			for (int i = startIndex-1 ; i >= endIndex; i += step) {
+				Object o = provider.getArrayElement(macro, arrayName, i);
+				addCallback.accept(o);
+			}
 		}
 	}
 	
@@ -106,7 +120,7 @@ public class Push extends BaseScriptAction {
 	@Override
 	public String getDescription() {
 		
-		return "Appends value[s] to the end of array. Values may be constants, array[*] to copy an entire array or array[a-b] to copy a <= indexes < b to new array.";
+		return "Appends value[s] to the end of array. Values may be constants, array[*] to copy an entire array or array[a:b:step] to copy a <= indexes < b to new array. Negative values wrap around.";
 	}
 	
 	@Nonnull
