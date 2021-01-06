@@ -49,18 +49,3 @@ addTablerow(["$hl","Score Iterator"]);
 addTablerow(["SCOREOBJECTIVENAME","Name of the associated objective.","String"]);
 addTablerow(["SCOREPLAYERNAME","Name of the owning player.","String"]);
 addTablerow(["SCOREVALUE","Value of the score.","Int"]);
-
-addTablerow(["$hl","Sound event"]);
-addTablerow(["XPOSF","Name of the associated objective.","String"]);
-addTablerow(["SOUNDXPOSF","XPOS of sound as float","String"]);
-addTablerow(["SOUNDYPOSF","YPOS of sound as float","String"]);
-addTablerow(["SOUNDZPOSF","ZPOS of sound as float","String"]);
-addTablerow(["SOUNDXPOS","XPOS of sound as int","int"]);
-addTablerow(["SOUNDYPOS","YPOS of sound as int","int"]);
-addTablerow(["SOUNDZPOS","ZPOS of sound as int","int"]);
-addTablerow(["SOUNDCANREPEAT","Whether the sound is able to repeat","boolean"]);
-addTablerow(["SOUNDATTENUATIONTYPE","Type of attenuation","Any of [NONE, LINEAR]"]);
-addTablerow(["SOUNDCATEGORY","Category of sound","Any of [MASTER, MUSIC, RECORDS, WEATHER, BLOCKS, HOSTILE, NEUTRAL, PLAYERS, AMBIENT, VOICE]"]);
-addTablerow(["SOUNDPITCH","Pitch of the sound as float","String"]);
-addTablerow(["SOUNDVOLUME","Volume of the sound as float","String"]);
-addTablerow(["SOUNDRESOURCE","Resourcepath of the sound","String"]);
