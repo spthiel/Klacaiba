@@ -33,6 +33,7 @@ public class VariableProviderHack extends VariableCache {
         this.storeVariable("LATENCY", playerConnection != null ? playerConnection.getResponseTime() : 0);
         this.storeVariable("HACKED", ScriptActionHack.hacked);
         this.storeVariable("MODULENEI", true);
+        this.storeVariable("MODULEKLACAIBA", true);
         this.storeVariable("MINECRAFTDIR", LiteLoader.getGameDirectory().getAbsolutePath() + File.separator);
         this.storeVariable("MACROSCONFIGDIR", (Macros.getInstance().getMacrosDirectory().getAbsolutePath()));
         this.storeVariable("FILESEPARATOR", File.separator);

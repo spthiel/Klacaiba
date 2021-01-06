@@ -10,6 +10,7 @@ import me.spthiel.klacaiba.newactions.without.exec.Exec;
 import me.spthiel.klacaiba.utils.HackObject;
 
 import net.eq2online.macros.compatibility.AllowedCharacters;
+import net.eq2online.macros.scripting.ScriptActionProvider;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptAction;
 import net.eq2online.macros.scripting.parser.ScriptContext;
@@ -51,6 +52,7 @@ public class ScriptActionHack extends ScriptAction {
         
         if (!hacked) {
             HackObject object = getHackObject();
+            
             addActions(object);
             hacked = true;
 	           
@@ -235,6 +237,9 @@ public class ScriptActionHack extends ScriptAction {
         actions.add(new DeleteControl());
         actions.add(new GetItemInfo());
         actions.add(new TimestampToDate());
+        actions.add(new ElseIfMatches());
+        actions.add(new Put());
+        actions.add(new Push());
         
         try {
             addDocument();
