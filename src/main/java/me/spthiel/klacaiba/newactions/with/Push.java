@@ -39,7 +39,7 @@ public class Push extends BaseScriptAction {
 		return null;
 	}
 	
-	private static final Pattern ARRAYPATTERN = Pattern.compile("(@?(?:|#|&)\\w[\\w\\d_-]+)\\[(\\*|\\d+-\\d+)\\]");
+	private static final Pattern ARRAYPATTERN = Pattern.compile("(@?(?:|#|&)\\w[\\w\\d_-]+)\\[(\\*|(?:\\d+:)*\\d+)\\]");
 	
 	protected void evaluateParam(IScriptActionProvider provider, IMacro macro, String parameter, Consumer<Object> addCallback) {
 		Matcher m;
@@ -48,27 +48,46 @@ public class Push extends BaseScriptAction {
 			String range = m.group(2);
 			if (provider.getArrayExists(macro, arrayName)) {
 				int start = 0;
-				int end = 0;
 				int arraySize = provider.getArraySize(macro, arrayName);
-				if (range.equals("*")) {
-					end = arraySize;
-				} else {
-					String[] splitted = range.split("-");
-					start = Math.max(Math.min(ScriptCore.tryParseInt(splitted[0], 0), arraySize), 0);
-					end = Math.max(Math.min(ScriptCore.tryParseInt(splitted[1], 0), arraySize), 0);
+				int end = arraySize;
+				int step = 1;
+				if (!range.equals("*")) {
+					String[] splitted = range.split(":");
+					start = Math.max(Math.min(ScriptCore.tryParseInt(splitted[0], 0), arraySize), -arraySize);
+					if (splitted.length > 1) {
+						end = splitted[1].matches("") ? arraySize : Math.max(Math.min(ScriptCore.tryParseInt(splitted[1], 0), arraySize), -arraySize);
+					}
+					if (start < 0) {
+						start = arraySize + start;
+					}
+					if (end < 0) {
+						end = arraySize + end;
+					}
+					if (end < start) {
+						int store = end;
+						end = start;
+						start = store;
+					}
+					if (splitted.length > 2) {
+						step = ScriptCore.tryParseInt(splitted[2], 1);
+						if (step == 0) {
+							step = 1;
+						}
+					}
+					if (step < 0) {
+						int store = end;
+						end = start;
+						start = store;
+					}
 				}
-				Minecraft.getMinecraft().player.sendChatMessage("Start: " + start + " End: " + end);
-				copyArrayTo(provider, macro, start, end, arrayName, addCallback);
-				
-			} else {
-				Minecraft.getMinecraft().player.sendChatMessage("Invalid array");
+				copyArrayTo(provider, macro, start, end, step, arrayName, addCallback);
 			}
 		} else {
 			addCallback.accept(parameter);
 		}
 	}
 	
-	private void copyArrayTo(IScriptActionProvider provider, IMacro macro, int startIndex, int endIndex, String arrayName, Consumer<Object> addCallback) {
+	private void copyArrayTo(IScriptActionProvider provider, IMacro macro, int startIndex, int endIndex, int step, String arrayName, Consumer<Object> addCallback) {
 		
 		for (int i = startIndex ; i < endIndex; i++) {
 			Object o = provider.getArrayElement(macro, arrayName, i);
