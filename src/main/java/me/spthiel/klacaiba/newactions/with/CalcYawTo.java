@@ -18,9 +18,9 @@ public class CalcYawTo extends BaseScriptAction {
 		ReturnValue retVal = new ReturnValue(0);
 		if (params.length > 1 && this.mc != null && this.mc.player != null) {
 			if (params.length > 2 && provider.expand(macro, params[2], false).trim().matches("-?\\d+")) {
-				float xPos = (float) ScriptCore.tryParseInt(provider.expand(macro, params[0], false), 0) + 0.5F;
-				float yPos = (float) ScriptCore.tryParseInt(provider.expand(macro, params[1], false), 0) + 0.5F;
-				float zPos = (float) ScriptCore.tryParseInt(provider.expand(macro, params[2], false), 0) + 0.5F;
+				float xPos = getValue(provider, macro, params[0]);
+				float yPos = getValue(provider, macro, params[1]);
+				float zPos = getValue(provider, macro, params[2]);
 				double deltaX = (double) xPos - this.mc.player.posX;
 				double deltaY = (double) yPos - this.mc.player.posY;
 				double deltaZ = (double) zPos - this.mc.player.posZ;
@@ -83,6 +83,17 @@ public class CalcYawTo extends BaseScriptAction {
 		}
 
 		return retVal;
+	}
+	
+	private float getValue(IScriptActionProvider provider, IMacro macro, String param) {
+		String expanded = provider.expand(macro, param, false);
+		if (expanded.matches("-?\\d+")) {
+			return Long.parseLong(expanded) + 0.5f;
+		} else if (expanded.matches("-?\\d+\\.\\d+")){
+			return Float.parseFloat(expanded);
+		} else {
+			return 0;
+		}
 	}
 	
 	@Nonnull
