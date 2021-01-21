@@ -17,7 +17,7 @@ public class CalcYawTo extends BaseScriptAction {
 	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		ReturnValue retVal = new ReturnValue(0);
 		if (params.length > 1 && this.mc != null && this.mc.player != null) {
-			if (params.length > 2 && provider.expand(macro, params[2], false).trim().matches("-?\\d+")) {
+			if (params.length > 2 && provider.expand(macro, params[2], false).trim().matches("-?\\d+\\.\\d+")) {
 				float xPos = getValue(provider, macro, params[0]);
 				float yPos = getValue(provider, macro, params[1]);
 				float zPos = getValue(provider, macro, params[2]);
