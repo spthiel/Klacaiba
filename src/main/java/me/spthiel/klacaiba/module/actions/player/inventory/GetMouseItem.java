@@ -1,4 +1,4 @@
-package me.spthiel.klacaiba.newactions.with;
+package me.spthiel.klacaiba.module.actions.player.inventory;
 
 import net.eq2online.macros.scripting.api.*;
 import net.minecraft.client.Minecraft;

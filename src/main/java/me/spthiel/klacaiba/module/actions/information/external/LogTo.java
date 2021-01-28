@@ -1,4 +1,4 @@
-package me.spthiel.klacaiba.newactions.without;
+package me.spthiel.klacaiba.module.actions.information.external;
 
 import net.eq2online.macros.scripting.ReturnValueLogTo;
 import net.eq2online.macros.scripting.api.IMacro;

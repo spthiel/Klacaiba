@@ -1,4 +1,4 @@
-package me.spthiel.klacaiba.newactions.without.exec;
+package me.spthiel.klacaiba.module.actions.mod.exec;
 
 import net.eq2online.macros.core.MacroExecVariableProvider;
 import net.eq2online.macros.scripting.api.IMacro;

@@ -1,4 +1,4 @@
-package me.spthiel.klacaiba.newactions.with;
+package me.spthiel.klacaiba.module.actions.player.inventory;
 
 import net.eq2online.macros.scripting.ReturnValueLog;
 import net.eq2online.macros.scripting.api.IMacro;

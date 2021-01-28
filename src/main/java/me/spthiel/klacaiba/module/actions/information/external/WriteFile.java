@@ -1,4 +1,4 @@
-package me.spthiel.klacaiba.newactions.with;
+package me.spthiel.klacaiba.module.actions.information.external;
 
 import me.spthiel.klacaiba.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.FilePath;
