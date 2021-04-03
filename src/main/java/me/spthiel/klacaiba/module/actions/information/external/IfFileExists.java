@@ -22,10 +22,6 @@ public class IfFileExists extends BaseConditionalOperator {
 		return I18n.get("script.error.stackhint", this, "ELSEIF\u00A7c, \u00A7dELSE\u00A7c or \u00A7dENDIF");
 	}
 
-	public boolean isConditionalOperator() {
-		return true;
-	}
-
 	public boolean executeConditional(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 
 		if(params.length == 0) {

@@ -27,8 +27,9 @@ public class HackObject {
 			updateScriptActionRegex();
 		} else {
 			for(int i = 0; i < actionsList.size(); i++) {
-				if(actionsList.get(i).getName().equalsIgnoreCase(name))
-					actionsList.set(i,action);
+				if(actionsList.get(i).getName().equalsIgnoreCase(name)) {
+					actionsList.set(i, action);
+				}
 			}
 		}
 		actions.put(name,action);

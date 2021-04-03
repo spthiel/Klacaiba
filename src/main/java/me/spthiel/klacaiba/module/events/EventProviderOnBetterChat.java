@@ -6,6 +6,7 @@ import com.mumfrey.liteloader.core.PacketEvents;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptContext;
 import net.eq2online.macros.scripting.parser.ScriptCore;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.ITextComponent;
 

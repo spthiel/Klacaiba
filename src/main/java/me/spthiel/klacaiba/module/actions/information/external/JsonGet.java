@@ -1,12 +1,16 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
+import me.spthiel.klacaiba.JSON.JSONArray;
 import me.spthiel.klacaiba.JSON.JSONException;
 import me.spthiel.klacaiba.JSON.JSONObject;
 import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.utils.JsonUtils;
 
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptAction;
 import net.eq2online.macros.scripting.parser.ScriptContext;
+import net.minecraft.client.gui.GuiRepair;
+import net.minecraft.inventory.ContainerRepair;
 
 import javax.annotation.Nonnull;
 
@@ -17,29 +21,39 @@ public class JsonGet extends ScriptAction implements IDocumentable {
 	}
 
 	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
-
+		
 		if(params.length > 1) {
 			
 			String json = provider.expand(macro, params[0],false);
 			String key = provider.expand(macro, params[1],false);
-			JSONObject object;
+			Object object;
 			try {
-				object = new JSONObject(json);
+				if (json.startsWith("[")) {
+					object = new JSONArray(json);
+				} else if (json.startsWith("{")){
+					object = new JSONObject(json);
+				} else {
+					throw new JSONException((String)null);
+				}
 			} catch(JSONException e) {
 				try {
-					object = new JSONObject(key);
+					if (key.startsWith("[")) {
+						object = new JSONArray(key);
+					} else {
+						object = new JSONObject(key);
+					}
 					key = json;
 				} catch (JSONException e1) {
 					return new ReturnValue("ERROR_INVALID_JSON");
 				}
 			}
-
-			if(!object.has(key)) {
-				return new ReturnValue("ERROR_JSON_WITHOUT_KEY");
+			
+			try {
+				return new ReturnValue(JsonUtils.getJsonFromPath(object, key).toString());
+			} catch (JSONException e) {
+				return new ReturnValue(e.getMessage());
 			}
-
-			return new ReturnValue(object.get(key).toString());
-
+			
 		} else {
 			return new ReturnValue("ERROR_TOO_FEW_ARGUMENTS");
 		}

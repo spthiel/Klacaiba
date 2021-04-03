@@ -8,12 +8,15 @@ import me.spthiel.klacaiba.module.actions.auto.WhileBase;
 import me.spthiel.klacaiba.module.actions.information.*;
 import me.spthiel.klacaiba.module.actions.information.counter.*;
 import me.spthiel.klacaiba.module.actions.information.external.*;
+import me.spthiel.klacaiba.module.actions.player.GetBreakTime;
+import me.spthiel.klacaiba.module.actions.player.IfCanHarvestBlock;
 import me.spthiel.klacaiba.module.actions.player.inventory.*;
 import me.spthiel.klacaiba.module.actions.language.*;
 import me.spthiel.klacaiba.module.actions.mod.*;
 import me.spthiel.klacaiba.module.actions.player.Look;
 import me.spthiel.klacaiba.module.actions.player.Looks;
 import me.spthiel.klacaiba.module.actions.world.*;
+import me.spthiel.klacaiba.module.events.PollEvent;
 import me.spthiel.klacaiba.module.iterators.*;
 import me.spthiel.klacaiba.module.actions.information.external.WriteFile;
 import me.spthiel.klacaiba.module.actions.information.external.Readfile;
@@ -159,7 +162,8 @@ public class ScriptActionHack extends ScriptAction {
 		List<IScriptAction> toPut = new LinkedList<>();
 		object.actionsList.stream()
 						  .filter(action -> action instanceof ScriptActionIf)
-						  .filter(action -> !action.getClass().equals(ScriptActionIf.class))
+						  .filter(action -> !action.getClass()
+												   .equals(ScriptActionIf.class))
 						  .map(action -> (ScriptActionIf) action)
 						  .forEach(
 							  action -> {
@@ -175,7 +179,8 @@ public class ScriptActionHack extends ScriptAction {
 		try {
 			addDocument(toPut);
 			System.out.println("Documentation for while, until and else actions loaded");
-		} catch (NoClassDefFoundError | ClassNotFoundException ignored) {}
+		} catch (NoClassDefFoundError | ClassNotFoundException ignored) {
+		}
 		
 		toPut.forEach(object :: addOrPut);
 		
@@ -303,8 +308,18 @@ public class ScriptActionHack extends ScriptAction {
 		actions.add(new Push());
 		actions.add(new Do());
 		actions.add(new IfInInv());
-		actions.add(new Do());
+		actions.add(new Strlen());
+		actions.add(new IfCanHarvestBlock());
+		actions.add(new PollEvent());
+		actions.add(new GetBreakTime());
 		
+		LinkedList<IScriptAction> toAdd = new LinkedList<>();
+		
+		actions.stream()
+			   .filter(action -> action instanceof IMultipleScriptAction)
+			   .map(action -> (IMultipleScriptAction) action)
+			   .forEach(action -> action.registerAdditionalActions(toAdd :: add));
+		actions.addAll(toAdd);
 		try {
 			addDocument();
 			documented = true;

@@ -104,7 +104,6 @@ public class Look extends ScriptAction {
 				if (initialDirection.yaw >= 225.0F && initialDirection.yaw < 315.0F) {
 					near = 270;
 				}
-				System.out.println(initialDirection.yaw + " " + initialDirection.pitch + " " + near);
 				dir.setYawAndPitch((float)near, 0.0F);
 			} else {
 				delayParam = 2;

@@ -9,4 +9,8 @@ public abstract class BaseConditionalOperator extends ScriptActionIf implements 
         
         super(ScriptContext.MAIN, actionName);
     }
+    
+    public boolean isConditionalOperator() {
+        return true;
+    }
 }
