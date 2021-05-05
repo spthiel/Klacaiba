@@ -15,6 +15,8 @@ public abstract class ModuleInfo {
     public static final short MAJOR = 2;
     
     public static final int VERSION = MAJOR*100000 + MINOR * 1000 + PATCH;
+    
+    public static final String NAME = "Klacaiba";
 
     /**
      * Private ctor, no instances 

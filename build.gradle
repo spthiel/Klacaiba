@@ -75,6 +75,9 @@ afterEvaluate {
         baseName = "module_" + archivesBaseName
         classifier = "$apiVersion-$modVersion-" + jar.classifier
         extension = "jar"
+        manifest {
+            attributes("Main-Class": "me.spthiel.installer.Main")
+        }
     }
     
     // Same for the source jar
