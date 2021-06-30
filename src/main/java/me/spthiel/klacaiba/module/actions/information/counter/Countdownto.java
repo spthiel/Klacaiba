@@ -29,9 +29,9 @@ public class Countdownto extends BaseScriptAction {
         if(params.length == 0) {
             return null;
         }
-        
     
-        String datetime = params[0];
+    
+        String datetime = provider.expand(macro, params[0], false);
         String date     = "";
         String time     = "";
         if (datetime.matches(".*(" + timeRegex + ").*")) {

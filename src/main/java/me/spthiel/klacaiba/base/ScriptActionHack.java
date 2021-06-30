@@ -3,18 +3,16 @@ package me.spthiel.klacaiba.base;
 import me.spthiel.documentor.main.DocumentorAPI;
 import me.spthiel.klacaiba.ModuleInfo;
 import me.spthiel.klacaiba.module.actions.auto.ElseIfBase;
+import me.spthiel.klacaiba.module.actions.auto.IfNotBase;
 import me.spthiel.klacaiba.module.actions.auto.UntilBase;
 import me.spthiel.klacaiba.module.actions.auto.WhileBase;
 import me.spthiel.klacaiba.module.actions.information.*;
 import me.spthiel.klacaiba.module.actions.information.counter.*;
 import me.spthiel.klacaiba.module.actions.information.external.*;
-import me.spthiel.klacaiba.module.actions.player.GetBreakTime;
-import me.spthiel.klacaiba.module.actions.player.IfCanHarvestBlock;
+import me.spthiel.klacaiba.module.actions.player.*;
 import me.spthiel.klacaiba.module.actions.player.inventory.*;
 import me.spthiel.klacaiba.module.actions.language.*;
 import me.spthiel.klacaiba.module.actions.mod.*;
-import me.spthiel.klacaiba.module.actions.player.Look;
-import me.spthiel.klacaiba.module.actions.player.Looks;
 import me.spthiel.klacaiba.module.actions.world.*;
 import me.spthiel.klacaiba.module.events.PollEvent;
 import me.spthiel.klacaiba.module.iterators.*;
@@ -170,6 +168,9 @@ public class ScriptActionHack extends ScriptAction {
 								  if (!object.actions.containsKey("else" + action.getName())) {
 									  toPut.add(new ElseIfBase(action));
 								  }
+								  IfNotBase ifNotBase = new IfNotBase(action);
+								  toPut.add(ifNotBase);
+								  toPut.add(new ElseIfBase(ifNotBase));
 								  toPut.add(new UntilBase(action));
 								  toPut.add(new WhileBase(action));
 							  }
@@ -312,6 +313,12 @@ public class ScriptActionHack extends ScriptAction {
 		actions.add(new IfCanHarvestBlock());
 		actions.add(new PollEvent());
 		actions.add(new GetBreakTime());
+		actions.add(new Restart());
+		actions.add(new Char());
+		actions.add(new Unix());
+		actions.add(new Eval());
+		actions.add(new Mod());
+		actions.add(new OldName());
 		
 		LinkedList<IScriptAction> toAdd = new LinkedList<>();
 		
