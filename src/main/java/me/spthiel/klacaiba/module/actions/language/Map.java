@@ -14,7 +14,7 @@ public class Map extends BaseScriptAction {
 	}
 	
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		if(params.length < 5) {
 			return new ReturnValue(0);

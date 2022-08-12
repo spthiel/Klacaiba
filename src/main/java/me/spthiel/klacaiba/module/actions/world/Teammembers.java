@@ -16,7 +16,7 @@ public class Teammembers extends BaseScriptAction {
         super("teammembers");
     }
     
-    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+    public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
         
         Scoreboard     scoreboard = this.mc.world.getScoreboard();
             

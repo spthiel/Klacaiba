@@ -3,6 +3,7 @@ package me.spthiel.klacaiba.module.variableprovider;
 import com.mumfrey.liteloader.core.LiteLoader;
 import me.spthiel.klacaiba.ModuleInfo;
 import me.spthiel.klacaiba.base.ScriptActionHack;
+import me.spthiel.klacaiba.config.gui.GuiKlacaibaConfig;
 import me.spthiel.klacaiba.module.events.IWorldChangeListener;
 
 import net.eq2online.macros.core.Macros;
@@ -40,7 +41,8 @@ public class VariableProviderHack extends VariableCache {
     
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         NetworkPlayerInfo playerConnection = player.connection.getPlayerInfo(player.getUniqueID());
-        
+    
+        //noinspection ConstantConditions
         this.storeVariable("LATENCY", playerConnection != null ? playerConnection.getResponseTime() : 0);
         this.storeVariable("HACKED", ScriptActionHack.hacked);
         this.storeVariable("MODULENEI", true);
@@ -71,6 +73,7 @@ public class VariableProviderHack extends VariableCache {
     public void onInit() {
 
         ScriptContext.MAIN.getCore().registerVariableProvider(this);
+        Macros.getInstance().getCustomScreenManager().registerCustomScreen("Klacaiba Settings", GuiKlacaibaConfig.class);
     }
 
 }

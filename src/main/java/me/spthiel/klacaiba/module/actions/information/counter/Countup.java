@@ -13,7 +13,7 @@ public class Countup extends BaseScriptAction {
     }
     
     @Override
-    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+    public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
         
         return new ReturnValue(Counter.registerCounter(new me.spthiel.klacaiba.utils.Countup()));
     }

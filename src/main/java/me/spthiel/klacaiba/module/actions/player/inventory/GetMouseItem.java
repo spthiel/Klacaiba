@@ -16,7 +16,7 @@ public class GetMouseItem extends BaseScriptAction {
     }
     
     @Override
-    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+    public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
     
         ItemStack slotStack = Minecraft.getMinecraft().player.inventory.getItemStack();
     

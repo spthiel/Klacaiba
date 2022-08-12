@@ -14,14 +14,14 @@ public class GetIdRel extends GetId {
 	}
 	
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		if(params.length > 3) {
 			params = params.clone();
 			params[0] = "~" + params[0];
 			params[1] = "~" + params[1];
 			params[2] = "~" + params[2];
 		}
-		return super.execute(provider, macro, instance, rawParams, params);
+		return super.run(provider, macro, instance, rawParams, params);
 	}
 	
 	@Nonnull

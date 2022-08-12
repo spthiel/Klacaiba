@@ -17,7 +17,7 @@ public class GetItemInfo extends BaseScriptAction {
 	}
 	
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		ReturnValue retVal = new ReturnValue("None");
 		if (params.length >= 1) {

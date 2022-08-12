@@ -17,7 +17,7 @@ public class GetChestName extends BaseScriptAction {
     }
     
     @Override
-    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+    public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
     
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         if(player.openContainer instanceof ContainerChest) {

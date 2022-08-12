@@ -15,7 +15,7 @@ public class WriteFile extends BaseScriptAction {
 		super("writefile");
 	}
 
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 
 		if(params.length < 2) {
 			return new ReturnValue("Too few arguments");

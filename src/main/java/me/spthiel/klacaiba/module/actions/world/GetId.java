@@ -31,7 +31,7 @@ public class GetId extends BaseScriptAction {
 	}
 	
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		ReturnValue retVal = new ReturnValue(Game.getBlockName((Block) null));
 		if (params.length > 2) {

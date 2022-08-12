@@ -20,6 +20,7 @@ import me.spthiel.klacaiba.module.actions.information.external.WriteFile;
 import me.spthiel.klacaiba.module.actions.information.external.Readfile;
 import me.spthiel.klacaiba.module.actions.mod.exec.Exec;
 import me.spthiel.klacaiba.utils.HackObject;
+import me.spthiel.klacaiba.utils.PacketListener;
 
 import net.eq2online.macros.compatibility.AllowedCharacters;
 import net.eq2online.macros.scripting.actions.lang.ScriptActionIf;
@@ -316,9 +317,11 @@ public class ScriptActionHack extends ScriptAction {
 		actions.add(new Restart());
 		actions.add(new Char());
 		actions.add(new Unix());
-		actions.add(new Eval());
+		actions.add(new Calc());
 		actions.add(new Mod());
 		actions.add(new OldName());
+		actions.add(new GetPlayerUUID());
+		actions.add(new FormatNumber());
 		
 		LinkedList<IScriptAction> toAdd = new LinkedList<>();
 		

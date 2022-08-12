@@ -25,7 +25,7 @@ public class CreateControl extends BaseScriptAction {
 	}
 	
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		if (params.length == 1 && params[0].equalsIgnoreCase("types") || params[0].equalsIgnoreCase("layouts")) {
 			

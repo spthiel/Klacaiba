@@ -75,9 +75,6 @@ afterEvaluate {
         baseName = "module_" + archivesBaseName
         classifier = "$apiVersion-$modVersion-" + jar.classifier
         extension = "jar"
-        manifest {
-            attributes("Main-Class": "me.spthiel.installer.Main")
-        }
     }
     
     // Same for the source jar
@@ -85,4 +82,9 @@ afterEvaluate {
         baseName = jar.baseName
         classifier = jar.classifier + "-sources"
     }
+}
+
+task copyJarToRun(type: Copy) {
+    from jar
+    into "/home/xx/minecraft/liteloader_forge_1.12/liteconfig/common/macros/modules"
 }

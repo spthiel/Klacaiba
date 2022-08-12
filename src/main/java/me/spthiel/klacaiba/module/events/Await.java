@@ -4,16 +4,19 @@ import net.eq2online.macros.scripting.api.IMacro;
 import net.eq2online.macros.scripting.api.IMacroAction;
 import net.eq2online.macros.scripting.api.IScriptActionProvider;
 import net.eq2online.macros.scripting.api.IScriptedIterator;
+import net.eq2online.macros.scripting.parser.ScriptAction;
+import net.eq2online.macros.scripting.parser.ScriptContext;
 
 import javax.annotation.Nonnull;
 
 import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.base.IDocumentable;
 
-public class Await extends BaseScriptAction {
+public class Await extends ScriptAction implements IDocumentable {
 	
 	public Await() {
 		
-		super("await");
+		super(ScriptContext.MAIN, "await");
 	}
 	
 	@Override

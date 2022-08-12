@@ -17,7 +17,7 @@ public class CalcYawTo extends BaseScriptAction {
 		super("calcyawto");
 	}
 
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		ReturnValue retVal = new ReturnValue(0);
 		if (params.length > 1 && this.mc != null && this.mc.player != null) {
 			if (params.length > 2 && !Variable.isValidVariableName(provider.expand(macro, params[2], false))) {

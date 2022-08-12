@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class BaseCustomEvent<T> implements IScriptedIterator {
 	

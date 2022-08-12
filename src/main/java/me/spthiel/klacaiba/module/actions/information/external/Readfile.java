@@ -20,7 +20,7 @@ public class Readfile extends BaseScriptAction {
 		super("readfile");
 	}
 
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 
 		String filename;
 		String arrayName = null;

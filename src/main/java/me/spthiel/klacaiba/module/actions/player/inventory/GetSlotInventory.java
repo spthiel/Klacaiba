@@ -20,7 +20,7 @@ public class GetSlotInventory extends BaseScriptAction {
 		super("getslotinv");
 	}
 	
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		ReturnValue retVal = new ReturnValue(-1);
 		if (params.length > 1) {
 			String varName = provider.expand(macro, params[1], false).toLowerCase();

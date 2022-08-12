@@ -21,7 +21,7 @@ public class Particle extends BaseScriptAction {
 	
 	// particlename, x, y, z, dx, dy, dz, count, mode
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		EnumParticleTypes particle     = EnumParticleTypes.REDSTONE;
 		boolean           colormode    = false;

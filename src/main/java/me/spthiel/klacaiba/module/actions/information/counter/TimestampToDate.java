@@ -17,7 +17,7 @@ public class TimestampToDate extends BaseScriptAction {
 	}
 	
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		if (params.length == 0) {
 			return new ReturnValue("See https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html for a full date format reference.");

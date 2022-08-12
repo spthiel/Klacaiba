@@ -20,7 +20,7 @@ public class GetSlotItemInventory extends BaseScriptAction {
 		super("getslotiteminv");
 	}
 
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		ItemStack slotStack = null;
 		if (params.length > 0) {
 			int slotId = Math.max(0, ScriptCore.tryParseInt(provider.expand(macro, params[0], false), 0));

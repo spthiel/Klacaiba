@@ -49,6 +49,11 @@ public class EventOnSound extends BaseCustomEvent<ISound> implements ISoundEvent
     }
     
     @Override
+    public void terminate() {
+        Minecraft.getMinecraft().getSoundHandler().removeListener(this);
+    }
+    
+    @Override
     public void soundPlay(ISound soundIn, SoundEventAccessor accessor) {
         populate(soundIn);
     }

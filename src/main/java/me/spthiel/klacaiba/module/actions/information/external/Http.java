@@ -1,6 +1,11 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
+import net.eq2online.macros.scripting.actions.lang.ScriptActionLcase;
+import net.eq2online.macros.scripting.actions.lang.ScriptActionUcase;
+import net.eq2online.macros.scripting.actions.lang.ScriptActionWait;
 import net.eq2online.macros.scripting.api.*;
+import net.eq2online.macros.scripting.parser.ScriptAction;
+import net.eq2online.macros.scripting.parser.ScriptContext;
 
 import javax.annotation.Nonnull;
 import java.io.BufferedReader;
@@ -12,16 +17,21 @@ import java.net.URL;
 import java.util.HashMap;
 
 import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.base.IDocumentable;
 
 
-public class Http extends BaseScriptAction {
+public class Http extends ScriptAction implements IDocumentable {
 	
 	public Http() {
-		super("http");
+		super(ScriptContext.MAIN, "http");
 	}
 
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public boolean canExecuteNow(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 
+		if (instance.getState() != null) {
+			return !instance.getState().equals(true);
+		}
+		
 		int index = 0;
 		String action = "GET";
 		String url = "";
@@ -68,18 +78,37 @@ public class Http extends BaseScriptAction {
 			
 			}
 		}
+		
 
 		if(hasEverything) {
-			return new ReturnValue(executeRequest(url,action,output,header));
+			String finalUrl = url;
+			String finalAction = action;
+			String finalOutput = output;
+			instance.setState(true);
+			Thread request = new Thread(() -> {
+				
+				instance.setState(executeRequest(finalUrl, finalAction, finalOutput, header));
+			});
+			
+			request.start();
+			return false;
 		}
 
 		provider.setVariable(macro, "&httpdebug1", "Last Request >> " + action + ": " + url);
 		provider.setVariable(macro, "&httpdebug2", "Last Request >> " + output);
 		provider.setVariable(macro, "&httpdebug3", "Last Request >> " + header);
 
-		return new ReturnValue("Error");
+		instance.setState("Error");
+		
+		return true;
 	}
-
+	
+	@Override
+	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+		
+		return new ReturnValue(instance.getState());
+	}
+	
 	/* Partially from http://www.xyzws.com/Javafaq/how-to-use-httpurlconnection-post-data-to-web-server/139 */
 	public static String executeRequest(String targetURL, String method, String output,  HashMap<String,String> header) {
 		HttpURLConnection connection = null;

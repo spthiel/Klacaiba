@@ -10,8 +10,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.base.Configurable;
+import me.spthiel.klacaiba.config.ConfigGroups;
 
-public class Countdownto extends BaseScriptAction {
+public class Countdownto extends BaseScriptAction implements Configurable {
     
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -24,7 +26,7 @@ public class Countdownto extends BaseScriptAction {
     }
     
     @Override
-    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+    public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
         
         if(params.length == 0) {
             return null;
@@ -76,5 +78,11 @@ public class Countdownto extends BaseScriptAction {
     public String getReturnType() {
         
         return "Id of the countdown. Use counter(<id>) to get the value";
+    }
+    
+    @Override
+    public ConfigGroups getGroup() {
+        
+        return ConfigGroups.UTILITIES;
     }
 }

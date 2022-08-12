@@ -1,32 +1,32 @@
 package me.spthiel.klacaiba.module.events;
 
 import net.eq2online.macros.compatibility.I18n;
-import net.eq2online.macros.core.Macro;
-import net.eq2online.macros.scripting.ScriptActionProvider;
 import net.eq2online.macros.scripting.actions.lang.ScriptActionNext;
 import net.eq2online.macros.scripting.api.*;
+import net.eq2online.macros.scripting.parser.ScriptAction;
+import net.eq2online.macros.scripting.parser.ScriptContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextComponentString;
 
 import javax.annotation.Nonnull;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import me.spthiel.klacaiba.base.BaseCustomEvent;
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.base.IDocumentable;
 import me.spthiel.klacaiba.base.IMultipleScriptAction;
+import me.spthiel.klacaiba.utils.PacketListener;
 
-public class PollEvent extends BaseScriptAction implements IMultipleScriptAction {
+public class PollEvent extends ScriptAction implements IDocumentable, IMultipleScriptAction {
 	
 	private final LinkedList<BaseCustomEvent<?>> events;
 	
 	public PollEvent() {
 		
-		super("pollevent");
+		super(ScriptContext.MAIN, "pollevent");
 		events = new LinkedList<>();
 		setupEvents();
 	}
@@ -52,8 +52,13 @@ public class PollEvent extends BaseScriptAction implements IMultipleScriptAction
 	}
 	
 	private void setupEvents() {
+		
 		registerEvent(new EventOnBlockBreak());
 		registerEvent(new EventOnSound());
+		registerEvent(new EventOnBossBar());
+		registerEvent(new EventOnChat());
+		PacketListener.getInstance().registerOwnEvents(this.events);
+		PacketListener.getInstance().start();
 	}
 	
 	public void registerEvent(BaseCustomEvent<?> event) {

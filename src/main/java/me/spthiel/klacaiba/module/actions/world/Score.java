@@ -17,7 +17,7 @@ public class Score extends BaseScriptAction {
         super("score");
     }
     
-    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+    public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
     
         Scoreboard     scoreboard = this.mc.world.getScoreboard();
         if(params.length > 0) {

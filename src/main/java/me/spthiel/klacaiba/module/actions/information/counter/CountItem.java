@@ -22,7 +22,7 @@ public class CountItem extends BaseScriptAction {
 	}
 	
 	@Override
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		ReturnValue retVal = new ReturnValue(-1);
 		if (params.length > 0) {
 			retVal.setInt(this.findItem(provider, macro, params[0]));

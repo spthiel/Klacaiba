@@ -8,10 +8,12 @@ import java.time.Duration;
 import java.util.HashMap;
 
 import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.base.Configurable;
+import me.spthiel.klacaiba.config.ConfigGroups;
 import me.spthiel.klacaiba.utils.Counting;
 import me.spthiel.klacaiba.utils.Utils;
 
-public class Counter extends BaseScriptAction {
+public class Counter extends BaseScriptAction implements Configurable {
     
     private static HashMap<Integer, Counting> counters = new HashMap<>();
     private static int                        id       = 0;
@@ -28,7 +30,7 @@ public class Counter extends BaseScriptAction {
     }
     
     @Override
-    public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+    public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
         
         if (params.length == 0) {
             return new ReturnValue("-1");
@@ -79,5 +81,11 @@ public class Counter extends BaseScriptAction {
     public String getReturnType() {
         
         return "Formatted time or hh:mm:ss if none was given";
+    }
+    
+    @Override
+    public ConfigGroups getGroup() {
+        
+        return ConfigGroups.UTILITIES;
     }
 }
