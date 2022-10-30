@@ -10,6 +10,7 @@ import java.util.HashMap;
 import me.spthiel.klacaiba.base.BaseScriptAction;
 import me.spthiel.klacaiba.base.Configurable;
 import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.config.ConfigOptionList;
 import me.spthiel.klacaiba.utils.Counting;
 import me.spthiel.klacaiba.utils.Utils;
 
@@ -87,5 +88,11 @@ public class Counter extends BaseScriptAction implements Configurable {
     public ConfigGroups getGroup() {
         
         return ConfigGroups.UTILITIES;
+    }
+    
+    @Override
+    public ConfigOptionList getOptions() {
+        
+        return null;
     }
 }

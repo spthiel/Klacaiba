@@ -89,7 +89,6 @@ public class OldName extends BaseScriptAction {
 	
 	public static String uuid(String json) {
 		int idx = json.indexOf("\"id\":");
-		System.out.println(idx);
 		if (idx != -1) {
 			char[] charJson = json.toCharArray();
 			char[] charOutput = new char[charJson.length];

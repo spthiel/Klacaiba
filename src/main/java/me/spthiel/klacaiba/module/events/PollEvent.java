@@ -57,6 +57,7 @@ public class PollEvent extends ScriptAction implements IDocumentable, IMultipleS
 		registerEvent(new EventOnSound());
 		registerEvent(new EventOnBossBar());
 		registerEvent(new EventOnChat());
+		registerEvent(new EventOnPlayerJoined());
 		PacketListener.getInstance().registerOwnEvents(this.events);
 		PacketListener.getInstance().start();
 	}
@@ -90,8 +91,10 @@ public class PollEvent extends ScriptAction implements IDocumentable, IMultipleS
 			} else {
 				return false;
 			}
-		} else {
+		} else if (state.isActive()) {
 			state.increment();
+		} else {
+			return false;
 		}
 		return true;
 	}
@@ -118,7 +121,6 @@ public class PollEvent extends ScriptAction implements IDocumentable, IMultipleS
 		IScriptedIterator state = getState(macro);
 		if (state != null) {
 			state.terminate();
-			setState(macro, null);
 			macro.unregisterVariableProvider(state);
 			return true;
 		} else {

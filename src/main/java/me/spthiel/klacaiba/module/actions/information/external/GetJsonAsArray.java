@@ -2,6 +2,7 @@ package me.spthiel.klacaiba.module.actions.information.external;
 
 import me.spthiel.klacaiba.JSON.JSONArray;
 import me.spthiel.klacaiba.JSON.JSONObject;
+import me.spthiel.klacaiba.base.BaseScriptAction;
 import me.spthiel.klacaiba.base.IDocumentable;
 
 import net.eq2online.macros.scripting.api.*;
@@ -11,13 +12,13 @@ import net.eq2online.macros.scripting.parser.ScriptContext;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
-public class GetJsonAsArray extends ScriptAction implements IDocumentable {
+public class GetJsonAsArray extends BaseScriptAction {
 
 	public GetJsonAsArray() {
-		super(ScriptContext.MAIN, "getjsonasarray");
+		super("getjsonasarray");
 	}
 
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 
 		if(params.length > 0) {
 

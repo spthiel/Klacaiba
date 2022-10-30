@@ -13,7 +13,7 @@ import me.spthiel.klacaiba.base.BaseScriptAction;
 import me.spthiel.klacaiba.base.Configurable;
 import me.spthiel.klacaiba.config.ConfigGroups;
 
-public class Countdownto extends BaseScriptAction implements Configurable {
+public class Countdownto extends BaseScriptAction {
     
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -80,7 +80,6 @@ public class Countdownto extends BaseScriptAction implements Configurable {
         return "Id of the countdown. Use counter(<id>) to get the value";
     }
     
-    @Override
     public ConfigGroups getGroup() {
         
         return ConfigGroups.UTILITIES;

@@ -3,6 +3,7 @@ package me.spthiel.klacaiba.module.actions.information.external;
 import me.spthiel.klacaiba.JSON.JSONArray;
 import me.spthiel.klacaiba.JSON.JSONException;
 import me.spthiel.klacaiba.JSON.JSONObject;
+import me.spthiel.klacaiba.base.BaseScriptAction;
 import me.spthiel.klacaiba.base.IDocumentable;
 import me.spthiel.klacaiba.utils.JsonUtils;
 
@@ -14,13 +15,13 @@ import net.minecraft.inventory.ContainerRepair;
 
 import javax.annotation.Nonnull;
 
-public class JsonGet extends ScriptAction implements IDocumentable {
+public class JsonGet extends BaseScriptAction {
 
 	public JsonGet() {
-		super(ScriptContext.MAIN, "jsonget");
+		super("jsonget");
 	}
 
-	public IReturnValue execute(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
+	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		if(params.length > 1) {
 			

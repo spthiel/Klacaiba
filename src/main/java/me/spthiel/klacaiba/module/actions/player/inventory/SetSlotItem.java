@@ -42,7 +42,6 @@ public class SetSlotItem extends BaseScriptAction {
 						String nbt = Util.convertAmpCodes(provider.expand(macro, params[3], false));
 						try {
 							NBTTagCompound compound = JsonToNBT.getTagFromJson(nbt);
-							System.out.println(compound.toString());
 							itemStack.setTagCompound(compound);
 						} catch (NBTException e) {
 							returnValue = new ReturnValueLog("Invalid NBT for setslotitem");

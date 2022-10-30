@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import me.spthiel.klacaiba.base.BaseScriptAction;
 import me.spthiel.klacaiba.base.Configurable;
 import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.config.ConfigOptionList;
 
 public class Countdownfrom extends BaseScriptAction implements Configurable {
     
@@ -64,5 +65,11 @@ public class Countdownfrom extends BaseScriptAction implements Configurable {
     public ConfigGroups getGroup() {
         
         return ConfigGroups.UTILITIES;
+    }
+    
+    @Override
+    public ConfigOptionList getOptions() {
+        
+        return null;
     }
 }
