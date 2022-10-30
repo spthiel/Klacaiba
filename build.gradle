@@ -85,6 +85,7 @@ afterEvaluate {
 }
 
 task copyJarToRun(type: Copy) {
+    def home = System.getenv("HOME");
     from jar
-    into "/home/xx/minecraft/liteloader_forge_1.12/liteconfig/common/macros/modules"
+    into home + "/minecraft/liteloader_forge_1.12/liteconfig/common/macros/modules"
 }
