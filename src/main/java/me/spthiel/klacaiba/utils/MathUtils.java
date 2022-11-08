@@ -1,10 +1,9 @@
-package me.utils;
+package me.spthiel.klacaiba.utils;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class MathUtils {
 	
@@ -117,22 +116,49 @@ public class MathUtils {
 						x = Math.E;
 					} else {
 						x = parseFactor();
-						x = switch (func) {
-							case "sqrt" -> Math.sqrt(x);
-							case "sin" -> Math.sin(Math.toRadians(x));
-							case "cos" -> Math.cos(Math.toRadians(x));
-							case "tan" -> Math.tan(Math.toRadians(x));
-							case "arcsin" -> Math.asin(Math.toRadians(x));
-							case "arccos" -> Math.acos(Math.toRadians(x));
-							case "arctan" -> Math.atan(Math.toRadians(x));
-							case "ran" -> Math.random() * x;
-							case "floor" -> Math.floor(x);
-							case "ceil" -> Math.ceil(x);
-							case "round" -> Math.round(x);
-							case "log" -> Math.log(x);
-							case "abs" -> Math.abs(x);
-							default -> throw new RuntimeException("Unknown function: " + func);
-						};
+						switch (func) {
+							case "sqrt":
+								x = Math.sqrt(x);
+								break;
+							case "sin":
+								x = Math.sin(Math.toRadians(x));
+								break;
+							case "cos":
+								x = Math.cos(Math.toRadians(x));
+								break;
+							case "tan":
+								x = Math.tan(Math.toRadians(x));
+								break;
+							case "arcsin":
+								x = Math.asin(Math.toRadians(x));
+								break;
+							case "arccos":
+								x = Math.acos(Math.toRadians(x));
+								break;
+							case "arctan":
+								x = Math.atan(Math.toRadians(x));
+								break;
+							case "ran":
+								x = Math.random() * x;
+								break;
+							case "floor":
+								x = Math.floor(x);
+								break;
+							case "ceil":
+								x = Math.ceil(x);
+								break;
+							case "round":
+								x = Math.round(x);
+								break;
+							case "log":
+								x = Math.log(x);
+								break;
+							case "abs":
+								x = Math.abs(x);
+								break;
+							default:
+								throw new RuntimeException("Unknown function: " + func);
+						}
 						
 					}
 				} else if (fractions.containsKey((int)ch)) {
@@ -170,8 +196,6 @@ public class MathUtils {
 					x = x + fractions.get((int)ch);
 					eat(ch);
 				}
-				
-				// ⁰¹²³⁵⁶⁷⁸⁹
 				
 				return x;
 			}

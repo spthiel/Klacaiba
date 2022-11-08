@@ -7,6 +7,7 @@ import net.minecraft.util.EnumParticleTypes;
 
 import javax.annotation.Nonnull;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,37 +44,37 @@ public class Particle extends BaseScriptAction {
 		}
 		
 		if(params.length > currentIndex) {
-			x = getIntOrDefault(provider, macro, params[currentIndex++], (int)x)+0.5;
+			x = getValue(provider, macro, params[currentIndex++]);
 		} else {
 			errors.add("ERROR_MISSING_X_ARG");
 		}
 		
 		if(params.length > currentIndex) {
-			y = getIntOrDefault(provider, macro, params[currentIndex++], (int)y) + 0.5;
+			y = getValue(provider, macro, params[currentIndex++]);
 		} else {
 			errors.add("ERROR_MISSING_Y_ARG");
 		}
 		
 		if(params.length > currentIndex) {
-			z = getIntOrDefault(provider, macro, params[currentIndex++], (int)z) + 0.5;
+			z = getValue(provider, macro, params[currentIndex++]);
 		} else {
 			errors.add("ERROR_MISSING_Z_ARG");
 		}
 		
 		if(params.length > currentIndex) {
-			dx = getIntOrDefault(provider, macro, params[currentIndex++], (int)dx);
+			dx = getValue(provider, macro, params[currentIndex++]);
 		} else {
 			errors.add("ERROR_MISSING_DX_ARG");
 		}
 		
 		if(params.length > currentIndex) {
-			dy = getIntOrDefault(provider, macro, params[currentIndex++], (int)dy);
+			dy = getValue(provider, macro, params[currentIndex++]);
 		} else {
 			errors.add("ERROR_MISSING_DY_ARG");
 		}
 		
 		if(params.length > currentIndex) {
-			dz = getIntOrDefault(provider, macro, params[currentIndex++], (int)dz);
+			dz = getValue(provider, macro, params[currentIndex++]);
 		} else {
 			errors.add("ERROR_MISSING_DZ_ARG");
 		}
@@ -98,6 +99,24 @@ public class Particle extends BaseScriptAction {
 		ReturnValueArray out = new ReturnValueArray(false);
 		out.putStrings(errors);
 		return out;
+	}
+	
+	private float getValue(IScriptActionProvider provider, IMacro macro, String param) {
+		String expanded = provider.expand(macro, param, false);
+		if(expanded.matches("-?\\d+")) {
+			return Long.parseLong(expanded) + 0.5f;
+		}
+		return (float) Arrays.stream(expanded.split("\\+")).mapToDouble(this::parse).sum();
+	}
+	
+	private double parse(String s) {
+		s = s.trim();
+		if (s.matches("-?\\d+")) {
+			return Long.parseLong(s);
+		} else if(s.matches("-?\\d+\\.\\d+")) {
+			return Double.parseDouble(s);
+		}
+		return 0;
 	}
 	
 	@Nonnull
