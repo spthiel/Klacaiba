@@ -94,6 +94,7 @@ public class PollEvent extends ScriptAction implements IDocumentable, IMultipleS
 		} else if (state.isActive()) {
 			state.increment();
 		} else {
+			this.setState(macro, null);
 			return false;
 		}
 		return true;

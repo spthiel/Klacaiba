@@ -41,6 +41,10 @@ public class MathUtils {
 				ch = (++pos < str.length()) ? str.charAt(pos) : -1;
 			}
 			
+			void prevChar() {
+				ch = (--pos >= 0) ? str.charAt(pos) : -1;
+			}
+			
 			boolean eat(int charToEat) {
 				while (ch == ' ') {
 					nextChar();
@@ -81,6 +85,46 @@ public class MathUtils {
 						x *= parseFactor(); // multiplication
 					} else if (eat('/') || eat('\u00F7') || eat('∕')) {
 						x /= parseFactor(); // division
+					} else if (eat('&')) {
+						if (eat('&')) {
+							x = x != 0 && parseFactor() != 0 ? 1 : 0;
+						} else {
+							x = (int) x & (int) parseFactor();
+						}
+					} else if (eat('|')) {
+						if (eat('|')) {
+							x = x != 0 || parseFactor() != 0 ? 1 : 0;
+						} else {
+							x = (int) x | (int) parseFactor();
+						}
+					} else if (eat('>')) {
+						if (eat('>')) {
+							x = (int) x >> (int) parseFactor();
+						} else if (eat('=')) {
+							x = x >= parseFactor() ? 1 : 0;
+						} else {
+							x = x > parseFactor() ? 1 : 0;
+						}
+					} else if (eat('<')) {
+						if (eat('<')) {
+							x = (int)x << (int)parseFactor();
+						} else if (eat('=')) {
+							x = x <= parseFactor() ? 1 : 0;
+						} else {
+							x = x < parseFactor() ? 1 : 0;
+						}
+					} else if (eat('=')) {
+						if (eat('=')) {
+							x = x == parseFactor() ? 1 : 0;
+						} else {
+							prevChar();
+						}
+					} else if (eat('!')) {
+						if (eat('=')) {
+							x = x != parseFactor() ? 1 : 0;
+						} else {
+							prevChar();
+						}
 					} else {
 						return x;
 					}
@@ -130,13 +174,13 @@ public class MathUtils {
 								x = Math.tan(Math.toRadians(x));
 								break;
 							case "arcsin":
-								x = Math.asin(Math.toRadians(x));
+								x = Math.asin(x);
 								break;
 							case "arccos":
-								x = Math.acos(Math.toRadians(x));
+								x = Math.acos(x);
 								break;
 							case "arctan":
-								x = Math.atan(Math.toRadians(x));
+								x = Math.atan(x);
 								break;
 							case "ran":
 								x = Math.random() * x;
@@ -173,12 +217,17 @@ public class MathUtils {
 				} else if(eat('e') || eat('E')) {
 					x = x * Math.pow(10, parseFactor());
 				} else if (eat('!')) {
-					double val = 1;
-					x = Math.floor(x);
-					for (int i = 1; i <= x; i++) {
-						val *= i;
+					if (eat('=')) {
+						prevChar();
+						prevChar();
+					} else {
+						double val = 1;
+						x = Math.floor(x);
+						for (int i = 1 ; i <= x ; i++) {
+							val *= i;
+						}
+						x = val;
 					}
-					x = val;
 				} else if(superscripts.contains(ch) || ch == 0x207B) { // superscript
 					boolean negative = eat('\u207B');
 					long superscript = 0;

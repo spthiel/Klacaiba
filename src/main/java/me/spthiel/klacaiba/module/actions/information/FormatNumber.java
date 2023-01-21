@@ -46,7 +46,13 @@ public class FormatNumber extends BaseScriptAction {
 			return new ReturnValue(false);
 		}
 		
-		int number = getIntOrDefault(provider, macro, params[0], 0);
+		String input = provider.expand(macro, params[0], false);
+		double number;
+		try {
+			number = Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			number = Double.parseDouble(input);
+		}
 		String format = provider.expand(macro, params[1], false);
 		
 		NumberFormat f = new DecimalFormat(format);

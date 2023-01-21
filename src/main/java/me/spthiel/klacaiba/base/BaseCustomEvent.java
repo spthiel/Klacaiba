@@ -93,6 +93,7 @@ public abstract class BaseCustomEvent<T> implements IScriptedIterator {
 			this.registerVariablesFor(this.queue.removeLast());
 		}
 		this.currentVariables.put("POLLALL", this.currentVariables.keySet().toString());
+		this.currentVariables.put("DRYRUN", !isActive());
 	}
 	
 	@Override
