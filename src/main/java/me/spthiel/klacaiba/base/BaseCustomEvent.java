@@ -89,11 +89,11 @@ public abstract class BaseCustomEvent<T> implements IScriptedIterator {
 	@Override
 	public void increment() {
 		this.currentVariables.clear();
+		this.currentVariables.put("DRYRUN", !this.isActive());
 		if (isActive()) {
 			this.registerVariablesFor(this.queue.removeLast());
 		}
 		this.currentVariables.put("POLLALL", this.currentVariables.keySet().toString());
-		this.currentVariables.put("DRYRUN", !isActive());
 	}
 	
 	@Override

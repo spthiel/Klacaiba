@@ -41,11 +41,15 @@ public class Calc extends BaseScriptAction {
 		double evaluated = MathUtils.eval(eval);
 		
 		if (varName != null) {
-			if (Variable.couldBeInt(varName)) {
-				provider.setVariable(macro, varName, (int)evaluated);
-			} else {
-				provider.setVariable(macro, varName, evaluated + "");
-			}
+			provider.setVariable(macro, varName, evaluated + "", (int) evaluated, evaluated != 0);
+		}
+		
+		String outvar = instance.getOutVarName();
+		
+		if (Variable.couldBeBoolean(outvar)) {
+			return new ReturnValue(evaluated != 0);
+		} else if (Variable.couldBeInt(outvar)) {
+			return new ReturnValue((int) evaluated);
 		}
 		
 		return new ReturnValue(evaluated + "");
@@ -55,7 +59,7 @@ public class Calc extends BaseScriptAction {
 	@Override
 	public String getUsage() {
 		
-		return "[&result =] eval(<[#&]result>,<expression>)";
+		return "[[&#]result =] eval(<[&#]result>,<expression>)";
 	}
 	
 	@Nonnull

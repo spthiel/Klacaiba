@@ -33,6 +33,47 @@ public class MathUtils {
 		fractions.put(0x2189,0d);
 	}
 	
+	public static void main(String[] args) {
+		
+		String[] testcases = new String[]{
+			"5 > 4",
+			"4 > 5",
+			"4 == 4",
+			"3 == 5",
+			"6 >= 5",
+			"5 >= 5",
+			"4 >= 5",
+			"5 & 3",
+			"5.5 & 0",
+			"5 | 3",
+			"5.5 | 0",
+			"5 >> 1",
+			"5 >> 2",
+			"5 << 1",
+			"5 << 2",
+			"1 != 2",
+			"1 != 1",
+			"5 && 0",
+			"5 && 1",
+			"0 || 1",
+			"0 || 0",
+			"8.456 > 8.3",
+			"8.456 < 8.7",
+			"(8.456 > 8.3) && (8.456 < 8.7)",
+			"8.123 > 8.3",
+			"8.123 < 8.7",
+			"(8.123 > 8.3) && (8.123 < 8.7)",
+			"8.800 > 8.3",
+			"8.800 < 8.7",
+			"(8.800 > 8.3) && (8.800 < 8.7)",
+		};
+		
+		for (String test :
+			testcases) {
+			System.out.println(test + " = " + eval(test));
+		}
+	}
+	
 	public static double eval(final String str) {
 		return new Object() {
 			int pos = -1, ch;
@@ -87,13 +128,15 @@ public class MathUtils {
 						x /= parseFactor(); // division
 					} else if (eat('&')) {
 						if (eat('&')) {
-							x = x != 0 && parseFactor() != 0 ? 1 : 0;
+							boolean factor = parseFactor() != 0;
+							x = x != 0 && factor ? 1 : 0;
 						} else {
 							x = (int) x & (int) parseFactor();
 						}
 					} else if (eat('|')) {
 						if (eat('|')) {
-							x = x != 0 || parseFactor() != 0 ? 1 : 0;
+							boolean factor = parseFactor() != 0;
+							x = x != 0 || factor ? 1 : 0;
 						} else {
 							x = (int) x | (int) parseFactor();
 						}
