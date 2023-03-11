@@ -1,4 +1,4 @@
-package net.eq2online.example.actions;
+package me.spthiel.klacaiba.module.actions.player.inventory;
 
 import net.eq2online.example.base.BaseScriptAction;
 import net.eq2online.example.ModuleInfo;
@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import javax.annotation.Nonnull;
 
-@APIVersion(ModuleInfo.API_VERSION)
 public class Pick extends BaseScriptAction {
 
     public Pick() {
@@ -81,19 +80,19 @@ public class Pick extends BaseScriptAction {
     }
 
     @Nonnull
-    //@Override
+    @Override
     public String getUsage() {
         return "pick(<item[:damage]>,[item[:damage]],...)";
     }
 
     @Nonnull
-    //@Override
+    @Override
     public String getDescription() {
         return "Selects the specified item ID if it is on the hotbar. Specify multiple items to pick, in order of preference. Returns the selected item name.";
     }
 
     @Nonnull
-    //@Override
+    @Override
     public String getReturnType() {
         return "Item ID of the item picked. -1 if none of the items was found.";
     }
