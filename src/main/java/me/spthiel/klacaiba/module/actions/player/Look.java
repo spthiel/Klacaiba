@@ -107,23 +107,18 @@ public class Look extends ScriptAction {
 				dir.setYawAndPitch((float)near, 0.0F);
 			} else {
 				delayParam = 2;
-				float pitchOffset;
-				if (Pattern.matches("^([\\+\\-]?)[0-9]+$", parsedParams[0])) {
-					pitchOffset = ScriptCore.tryParseFloat(parsedParams[0], 0.0F);
-					if (!parsedParams[0].startsWith("+") && !parsedParams[0].startsWith("-")) {
-						dir.setYaw(pitchOffset + 180.0F);
-					} else {
-						dir.setYaw(initialDirection.yaw + pitchOffset);
-					}
+				float offset = ScriptCore.tryParseFloat(parsedParams[0], 0.0F);
+				if (!parsedParams[0].startsWith("+") && !parsedParams[0].startsWith("-")) {
+					dir.setYaw(offset + 180.0F);
+				} else {
+					dir.setYaw(initialDirection.yaw + offset);
 				}
 
-				if (parsedParams.length > 1 && Pattern.matches("^([\\+\\-]?)[0-9]+$", parsedParams[1])) {
-					pitchOffset = ScriptCore.tryParseFloat(parsedParams[1], 0.0F);
-					if (!parsedParams[1].startsWith("+") && !parsedParams[1].startsWith("-")) {
-						dir.setPitch(pitchOffset);
-					} else {
-						dir.setPitch(initialDirection.pitch + pitchOffset);
-					}
+				offset = ScriptCore.tryParseFloat(parsedParams[1], 0.0F);
+				if (!parsedParams[1].startsWith("+") && !parsedParams[1].startsWith("-")) {
+					dir.setPitch(offset);
+				} else {
+					dir.setPitch(initialDirection.pitch + offset);
 				}
 			}
 
