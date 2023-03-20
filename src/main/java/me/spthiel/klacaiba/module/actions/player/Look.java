@@ -22,6 +22,10 @@ public class Look extends ScriptAction {
 		super(ScriptContext.MAIN,"look");
 		this.interpolationType = FloatInterpolator.InterpolationType.Linear;
 	}
+	
+	public Look(String name) {
+		super(ScriptContext.MAIN,name);
+	}
 
 	public boolean isThreadSafe() {
 		return false;
