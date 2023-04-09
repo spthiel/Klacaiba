@@ -7,6 +7,7 @@ import me.spthiel.klacaiba.base.BaseScriptAction;
 import me.spthiel.klacaiba.base.IDocumentable;
 import me.spthiel.klacaiba.utils.JsonUtils;
 
+import net.eq2online.macros.scripting.actions.game.ScriptActionTrace;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptAction;
 import net.eq2online.macros.scripting.parser.ScriptContext;
@@ -24,7 +25,6 @@ public class JsonGet extends BaseScriptAction {
 	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
 		
 		if(params.length > 1) {
-			
 			String json = provider.expand(macro, params[0],false);
 			String key = provider.expand(macro, params[1],false);
 			Object object;

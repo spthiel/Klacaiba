@@ -6,6 +6,7 @@ import net.eq2online.macros.scripting.api.*;
 import javax.annotation.Nonnull;
 
 import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.base.ReturnValueDouble;
 import me.spthiel.klacaiba.utils.MathUtils;
 
 public class Calc extends BaseScriptAction {
@@ -44,15 +45,7 @@ public class Calc extends BaseScriptAction {
 			provider.setVariable(macro, varName, evaluated + "", (int) evaluated, evaluated != 0);
 		}
 		
-		String outvar = instance.getOutVarName();
-		
-		if (Variable.couldBeBoolean(outvar)) {
-			return new ReturnValue(evaluated != 0);
-		} else if (Variable.couldBeInt(outvar)) {
-			return new ReturnValue((int) evaluated);
-		}
-		
-		return new ReturnValue(evaluated + "");
+		return new ReturnValueDouble(evaluated);
 	}
 	
 	@Nonnull
