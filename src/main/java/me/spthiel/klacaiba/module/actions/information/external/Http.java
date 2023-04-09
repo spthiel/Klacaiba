@@ -39,6 +39,7 @@ public class Http extends ScriptAction implements IDocumentable {
 		HashMap<String,String> header = new HashMap<>();
 		boolean requiresExtra = false;
 		boolean hasEverything = true;
+		int timeout = -1;
 
 
 
@@ -67,6 +68,16 @@ public class Http extends ScriptAction implements IDocumentable {
 			index++;
 		} else if(requiresExtra){
 			hasEverything = false;
+		} else if (params.length > index){
+			try {
+				timeout = Integer.parseInt(provider.expand(macro, params[index], false));
+			} catch (NumberFormatException ignored) {}
+		}
+		
+		if (requiresExtra && params.length > index) {
+			try {
+				timeout = Integer.parseInt(provider.expand(macro, params[index], false));
+			} catch (NumberFormatException ignored) {}
 		}
 
 		for(; index < params.length; index++) {
@@ -84,10 +95,19 @@ public class Http extends ScriptAction implements IDocumentable {
 			String finalUrl = url;
 			String finalAction = action;
 			String finalOutput = output;
+			int finalTimeout = timeout;
 			instance.setState(true);
 			Thread request = new Thread(() -> {
-				
-				instance.setState(executeRequest(finalUrl, finalAction, finalOutput, header));
+				String response = executeRequest(finalUrl, finalAction, finalOutput, header, finalTimeout);
+				if (response == null) {
+					provider.setVariable(macro, "&httpdebug1", "Last Request >> " + finalAction + ": " + finalUrl);
+					provider.setVariable(macro, "&httpdebug2", "Last Request >> " + finalOutput);
+					provider.setVariable(macro, "&httpdebug3", "Last Request >> " + header);
+					
+					instance.setState("Error");
+				} else {
+					instance.setState(response);
+				}
 			});
 			
 			request.start();
@@ -110,7 +130,7 @@ public class Http extends ScriptAction implements IDocumentable {
 	}
 	
 	/* Partially from http://www.xyzws.com/Javafaq/how-to-use-httpurlconnection-post-data-to-web-server/139 */
-	public static String executeRequest(String targetURL, String method, String output,  HashMap<String,String> header) {
+	public static String executeRequest(String targetURL, String method, String output,  HashMap<String,String> header, int timeout) {
 		HttpURLConnection connection = null;
 		method = method.toUpperCase();
 
@@ -118,9 +138,13 @@ public class Http extends ScriptAction implements IDocumentable {
 			//Create connection
 			URL url = new URL(targetURL);
 			connection = (HttpURLConnection) url.openConnection();
+			if (timeout != -1) {
+				connection.setConnectTimeout(timeout);
+				connection.setReadTimeout(timeout);
+			}
 			connection.setRequestMethod(method);
 
-			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36");
 
 			connection.setUseCaches(false);
 			connection.setDoOutput(method.matches("POST|PUT"));
@@ -161,7 +185,7 @@ public class Http extends ScriptAction implements IDocumentable {
 	@Override
 	public String getUsage() {
 		
-		return "http([GET|POST|PUT|DELETE],<url>,[output stream],[headers])";
+		return "http([GET|POST|PUT|DELETE],<url>,[output stream],[headers|connection-timeout],[connection-timeout])";
 	}
 	
 	@Nonnull
