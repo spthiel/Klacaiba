@@ -322,6 +322,7 @@ public class ScriptActionHack extends ScriptAction {
 		actions.add(new OldName());
 		actions.add(new GetPlayerUUID());
 		actions.add(new FormatNumber());
+		actions.add(new Pick());
 		
 		LinkedList<IScriptAction> toAdd = new LinkedList<>();
 		
