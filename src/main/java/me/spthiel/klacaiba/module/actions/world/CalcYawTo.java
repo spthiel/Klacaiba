@@ -10,6 +10,7 @@ import javax.annotation.Nonnull;
 import java.util.Arrays;
 
 import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.base.FloatReturnValue;
 
 public class CalcYawTo extends BaseScriptAction {
 
@@ -18,7 +19,7 @@ public class CalcYawTo extends BaseScriptAction {
 	}
 
 	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
-		ReturnValue retVal = new ReturnValue(0);
+		FloatReturnValue retVal = new FloatReturnValue(0);
 		if (params.length > 1 && this.mc != null && this.mc.player != null) {
 			if (params.length > 2 && !Variable.isValidVariableName(provider.expand(macro, params[2], false))) {
 				float xPos = getValue(provider, macro, params[0]);
@@ -37,25 +38,21 @@ public class CalcYawTo extends BaseScriptAction {
 				String varName;
 				if (params.length > 3) {
 
-					int yaw;
-					yaw = (int) (Math.atan2(deltaZ, deltaX) * 180.0D / Math.PI - 90.0D);
+					double yaw;
+					yaw = (Math.atan2(deltaZ, deltaX) * 180.0D / Math.PI - 90.0D);
 					while (yaw < 0) {
-
 						yaw += 360;
 					}
 
-					varName = provider.expand(macro, params[3], false);
-					provider.setVariable(macro, varName, yaw);
+					setVariableFloat(provider, macro, params[3], yaw);
 				}
 
 				if (params.length > 4) {
-					varName = provider.expand(macro, params[4], false);
-					provider.setVariable(macro, varName, MathHelper.floor(distance));
+					setVariableFloat(provider, macro, params[4], distance);
 				}
 
 				if (params.length > 5) {
-					varName = provider.expand(macro, params[5], false);
-					provider.setVariable(macro, varName, MathHelper.floor(360-pitchFromPlayer));
+					setVariableFloat(provider, macro, params[5], 360-pitchFromPlayer);
 				}
 			} else {
 				float xPos = (float)ScriptCore.tryParseInt(provider.expand(macro, params[0], false), 0) + 0.5F;
@@ -70,7 +67,7 @@ public class CalcYawTo extends BaseScriptAction {
 					yaw += 360;
 				}
 
-				retVal.setInt(yaw);
+				retVal.setValue(yaw);
 				String varName;
 				if (params.length > 2) {
 					varName = provider.expand(macro, params[2], false);
@@ -85,6 +82,15 @@ public class CalcYawTo extends BaseScriptAction {
 		}
 
 		return retVal;
+	}
+	
+	private void setVariableFloat(IScriptActionProvider provider, IMacro macro, String variable, double value) {
+		String varname = provider.expand(macro, variable, false);
+		if (Variable.couldBeInt(variable)) {
+			provider.setVariable(macro, variable, (int)value);
+		} else {
+			provider.setVariable(macro, variable, Float.toString((float)value));
+		}
 	}
 	
 	private float getValue(IScriptActionProvider provider, IMacro macro, String param) {

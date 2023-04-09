@@ -5,9 +5,13 @@ import net.eq2online.macros.scripting.api.ReturnValue;
 
 public class FloatReturnValue implements IReturnValue {
 	
-	private final float value;
+	private float value;
 	
 	public FloatReturnValue(float value) {
+		this.value = value;
+	}
+	
+	public void setValue(float value) {
 		this.value = value;
 	}
 	
