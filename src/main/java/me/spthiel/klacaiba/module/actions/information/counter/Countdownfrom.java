@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.Configurable;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
+import me.spthiel.klacaiba.module.actions.base.IConfigurable;
 import me.spthiel.klacaiba.config.ConfigGroups;
 import me.spthiel.klacaiba.config.ConfigOptionList;
 
-public class Countdownfrom extends BaseScriptAction implements Configurable {
+public class Countdownfrom extends BaseScriptAction implements IConfigurable {
     
     private static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     private static String            timeRegex     = "\\d\\d:\\d\\d:\\d\\d";

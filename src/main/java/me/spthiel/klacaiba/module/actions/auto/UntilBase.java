@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 
 import java.lang.reflect.Field;
 
-import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.module.actions.base.IDocumentable;
 
 public class UntilBase extends ScriptActionUntil implements IDocumentable {
 	

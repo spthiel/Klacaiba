@@ -1,6 +1,7 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.FilePath;
 import net.eq2online.macros.scripting.api.*;
 
@@ -54,5 +55,11 @@ public class MkDir extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Various useful status codes for debugging. ERROR if the folder doesn't exist afterwards";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.EXTERNALS;
 	}
 }

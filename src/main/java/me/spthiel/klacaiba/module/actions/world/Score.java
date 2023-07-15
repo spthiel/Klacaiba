@@ -8,7 +8,8 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Score extends BaseScriptAction {
     
@@ -73,5 +74,11 @@ public class Score extends BaseScriptAction {
     public String getReturnType() {
         
         return "Int or 0 when playername is present. String[] (as Playername:Value) when playername is not present. If neither objectivename or playername present returns list of objectivenames";
+    }
+    
+    @Override
+    public ConfigGroups getGroup() {
+        
+        return ConfigGroups.VARIABLES;
     }
 }

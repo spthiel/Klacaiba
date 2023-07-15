@@ -15,9 +15,9 @@ import java.util.LinkedList;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import me.spthiel.klacaiba.base.BaseCustomEvent;
-import me.spthiel.klacaiba.base.IDocumentable;
-import me.spthiel.klacaiba.base.IMultipleScriptAction;
+import me.spthiel.klacaiba.module.actions.base.BaseCustomEvent;
+import me.spthiel.klacaiba.module.actions.base.IDocumentable;
+import me.spthiel.klacaiba.module.actions.base.IMultipleScriptAction;
 import me.spthiel.klacaiba.utils.PacketListener;
 
 public class PollEvent extends ScriptAction implements IDocumentable, IMultipleScriptAction {

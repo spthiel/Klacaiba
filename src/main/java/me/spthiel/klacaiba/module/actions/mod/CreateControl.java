@@ -14,7 +14,8 @@ import java.awt.*;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class CreateControl extends BaseScriptAction {
 	
@@ -109,5 +110,11 @@ public class CreateControl extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Name of the control (to be used in setproperty etc) or error message. May be used to get layoutnames and controltypes.";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

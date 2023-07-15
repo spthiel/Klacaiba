@@ -10,6 +10,7 @@ import net.eq2online.macros.gui.controls.GuiCheckBox;
 import net.eq2online.macros.gui.controls.GuiScrollBar;
 import net.eq2online.macros.gui.layout.PanelManager;
 import net.eq2online.macros.input.InputHandler;
+import net.eq2online.macros.interfaces.IListEntry;
 import net.eq2online.macros.res.ResourceLocations;
 import net.eq2online.macros.scripting.ModuleLoader;
 import net.eq2online.macros.scripting.actions.game.ScriptActionClearCrafting;
@@ -22,6 +23,7 @@ import javax.annotation.Nonnull;
 
 import java.io.IOException;
 
+import me.spthiel.klacaiba.config.ConfigGroups;
 import me.spthiel.klacaiba.config.ConfigManager;
 
 public class GuiKlacaibaConfig extends GuiScreenEx {
@@ -29,9 +31,7 @@ public class GuiKlacaibaConfig extends GuiScreenEx {
 	private final Macros                 macros;
 	private final GuiScreenEx            parentScreen;
 	private final GuiKlacaibaConfigPanel configPanel;
-	private final PanelManager           panelManager;
 	private final int                    sneakCode;
-	private final ConfigManager          configManager = ConfigManager.getInstance();
 	private final GuiScrollBar           scrollBar     = new GuiScrollBar(this.mc, 0, this.width - 24, 40, 20, this.height - 70, 0, 1000, GuiScrollBar.ScrollBarOrientation.VERTICAL);
 	private final GuiListBoxConfigGroups configGroups  = new GuiListBoxConfigGroups(this.mc, 1, 4, 40, 174, this.height - 94);
 	private final KlacaibaGuiButton      buttonConfirm = new KlacaibaGuiButton(Alignment.END, Alignment.END, -4, -4,60, 20, I18n.get("gui.ok"), this);
@@ -47,10 +47,13 @@ public class GuiKlacaibaConfig extends GuiScreenEx {
 		this.zLevel = 999.0F;
 		this.macros = macros;
 		this.parentScreen = parentScreen;
-		this.configPanel = new GuiKlacaibaConfigPanel(Minecraft.getMinecraft(), this);
-		this.panelManager = this.macros.getLayoutPanels();
+		this.configPanel = new GuiKlacaibaConfigPanel();
 		this.sneakCode = this.macros.getInputHandler()
 									.getSneakKeyCode();
+		
+		this.configGroups.onClick(() -> {
+			configPanel.select(configGroups.getSelectedItem().getData());
+		});
 		
 		initListeners();
 	}
@@ -59,9 +62,7 @@ public class GuiKlacaibaConfig extends GuiScreenEx {
 		
 		this.buttonConfirm.onClick(this :: submit);
 		
-		this.buttonExit.onClick(() -> {
-			this.mc.displayGuiScreen(this.parentScreen);
-		});
+		this.buttonExit.onClick(() -> this.mc.displayGuiScreen(this.parentScreen));
 	}
 	
 	protected void submit() {
@@ -93,7 +94,6 @@ public class GuiKlacaibaConfig extends GuiScreenEx {
 		}
 		
 		this.configPanel.onTick(this);
-		this.panelManager.tickInGui();
 		super.updateScreen();
 	}
 	
@@ -126,7 +126,7 @@ public class GuiKlacaibaConfig extends GuiScreenEx {
 		}
 		
 		this.renderer.drawStringWithEllipsis(this.configGroups.getSelectedItem()
-															  .getData(), 186, 7, this.width - 210, 4259648);
+															  .getText(), 186, 7, this.width - 210, 4259648);
 		this.drawCenteredString(this.fontRenderer, "Klacaiba Settings", 90, 7, 16776960);
 		this.renderer.drawTexturedModalRect(ResourceLocations.MAIN, this.width - 17, 5, this.width - 5, 17, 104, 104, 128, 128);
 		this.drawString(this.fontRenderer, I18n.get("options.selectconfig"), 8, 26, 16776960);

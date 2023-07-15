@@ -1,7 +1,8 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
 import me.spthiel.klacaiba.JSON.JSONObject;
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 import net.eq2online.macros.scripting.api.*;
 
@@ -61,5 +62,11 @@ public class GetJsonKeys extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Array containing all the keys";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.EXTERNALS;
 	}
 }

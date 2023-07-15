@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Char extends BaseScriptAction {
 	
@@ -101,5 +102,11 @@ public class Char extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Char or chars from the expression";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.UTILITIES;
 	}
 }

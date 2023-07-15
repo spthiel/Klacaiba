@@ -1,19 +1,12 @@
 package me.spthiel.klacaiba.module.events;
 
-import net.eq2online.macros.core.Macro;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.network.play.server.SPacketChat;
 import net.minecraft.network.play.server.SPacketPlayerListItem;
 
-import java.util.ArrayList;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
-import me.spthiel.klacaiba.base.BaseCustomEvent;
-import me.spthiel.klacaiba.base.PacketListeningEvent;
+import me.spthiel.klacaiba.module.actions.base.BaseCustomEvent;
+import me.spthiel.klacaiba.module.events.base.PacketListeningEvent;
 import me.spthiel.klacaiba.utils.FilterRecentDuplicates;
 import me.spthiel.klacaiba.utils.PacketListener;
 

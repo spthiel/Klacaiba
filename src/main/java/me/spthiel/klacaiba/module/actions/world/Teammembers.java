@@ -7,7 +7,8 @@ import net.minecraft.scoreboard.Scoreboard;
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Teammembers extends BaseScriptAction {
     
@@ -57,5 +58,11 @@ public class Teammembers extends BaseScriptAction {
     public String getReturnType() {
         
         return "List of playernames when team is present or and empty list if the team doesn't exist. List of teamnames when team isn't present";
+    }
+    
+    @Override
+    public ConfigGroups getGroup() {
+        
+        return ConfigGroups.VARIABLES;
     }
 }

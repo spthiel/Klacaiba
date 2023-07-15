@@ -9,7 +9,8 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class CountInvItem extends BaseScriptAction {
 	
@@ -67,5 +68,11 @@ public class CountInvItem extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Amount of items";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.PLAYER;
 	}
 }

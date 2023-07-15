@@ -1,8 +1,13 @@
 package me.spthiel.klacaiba.utils;
 
+import net.eq2online.macros.scripting.ModuleLoader;
 import net.eq2online.macros.scripting.api.IScriptAction;
 import net.eq2online.macros.scripting.api.IScriptedIterator;
+import net.eq2online.macros.scripting.parser.ScriptContext;
+import net.eq2online.macros.scripting.parser.ScriptCore;
 
+import java.lang.reflect.Field;
+import java.sql.Ref;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,15 +16,18 @@ import java.util.regex.Pattern;
 
 public class HackObject {
 
-	public HashMap<String, IScriptAction> actions;
-	public Map<String, Class<? extends IScriptedIterator>> iterators;
-	public List<IScriptAction> actionsList;
-	public Pattern pattern;
 
 	public HackObject() {
-
 	}
-
+	
+	public IScriptAction getScriptActionFor(String name) {
+		return this.actions.get(name);
+	}
+	
+	/**
+	 * Overwrite current action in macromod if it exists or add it as new one
+	 * @param action Action to add or overwrite with
+	 */
 	public void addOrPut(IScriptAction action) {
 		String name = action.getName();
 		if(!actions.containsKey(name)) {
@@ -37,26 +45,6 @@ public class HackObject {
 	
 	public void addOrPut(String iteratorKey, Class<? extends IScriptedIterator> iterator) {
 		iterators.put(iteratorKey, iterator);
-	}
-
-	private void updateScriptActionRegex()
-	{
-		StringBuilder actionList = new StringBuilder();
-		String separator = "";
-
-		TreeSet<String> sortedActionNames = new TreeSet<String>();
-		for (IScriptAction action : this.actions.values())
-		{
-			sortedActionNames.add(action.toString());
-		}
-
-		for (String actionName : sortedActionNames)
-		{
-			actionList.insert(0, actionName + separator);
-			separator = "|";
-		}
-
-		this.pattern = Pattern.compile("(" + actionList.toString() + ")(?![a-zA-Z%])([(;]|)", Pattern.CASE_INSENSITIVE);
 	}
 
 }

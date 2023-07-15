@@ -4,12 +4,9 @@ import com.mumfrey.liteloader.ChatListener;
 import com.mumfrey.liteloader.PacketHandler;
 import com.mumfrey.liteloader.client.PacketEventsClient;
 import com.mumfrey.liteloader.core.PacketEvents;
-import net.eq2online.macros.scripting.parser.ScriptContext;
-import net.eq2online.macros.scripting.parser.ScriptCore;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketChat;
-import net.minecraft.network.play.server.SPacketUpdateBossInfo;
 import net.minecraft.util.text.ITextComponent;
 
 import java.io.File;
@@ -17,7 +14,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import me.spthiel.klacaiba.base.PacketListeningEvent;
+import me.spthiel.klacaiba.module.events.base.PacketListeningEvent;
 
 public class PacketListener implements PacketHandler, ChatListener {
 	

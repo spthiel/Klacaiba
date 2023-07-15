@@ -10,7 +10,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseConditionalOperator;
+import me.spthiel.klacaiba.module.actions.base.BaseConditionalOperator;
 
 public class IfInvIsFull extends BaseConditionalOperator {
 

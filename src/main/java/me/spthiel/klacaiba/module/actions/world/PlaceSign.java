@@ -4,7 +4,6 @@ import net.eq2online.console.Log;
 import net.eq2online.macros.compatibility.I18n;
 import net.eq2online.macros.core.Macros;
 import net.eq2online.macros.core.mixin.IGuiEditSign;
-import net.eq2online.macros.scripting.actions.game.ScriptActionPlaceSign;
 import net.eq2online.macros.scripting.api.IMacro;
 import net.eq2online.macros.scripting.api.IMacroAction;
 import net.eq2online.macros.scripting.api.IReturnValue;
@@ -19,7 +18,8 @@ import net.minecraft.util.text.TextComponentString;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class PlaceSign extends BaseScriptAction {
 	private boolean handlePlacingSign = false;
@@ -128,5 +128,11 @@ public class PlaceSign extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

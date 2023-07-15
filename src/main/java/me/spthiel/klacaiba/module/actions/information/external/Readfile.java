@@ -1,6 +1,7 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.FilePath;
 
 import net.eq2online.macros.scripting.Variable;
@@ -95,5 +96,11 @@ public class Readfile extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Content of the file as array";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.EXTERNALS;
 	}
 }

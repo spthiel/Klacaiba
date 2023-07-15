@@ -1,15 +1,13 @@
 package me.spthiel.klacaiba.module.actions.player;
 
-import com.mojang.authlib.GameProfile;
-import com.mumfrey.liteloader.core.LiteLoader;
 import net.eq2online.macros.scripting.api.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseConditionalOperator;
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class GetPlayerUUID extends BaseScriptAction {
 	
@@ -54,5 +52,11 @@ public class GetPlayerUUID extends BaseScriptAction {
 		}
 		
 		return new ReturnValue(playerInfo.getGameProfile().getId().toString());
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.PLAYER;
 	}
 }

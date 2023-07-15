@@ -1,12 +1,12 @@
 package me.spthiel.klacaiba.module.actions.information;
 
-import net.eq2online.macros.scripting.ScriptActionProvider;
 import net.eq2online.macros.scripting.Variable;
 import net.eq2online.macros.scripting.api.*;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Mod extends BaseScriptAction {
 	
@@ -56,5 +56,11 @@ public class Mod extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Result of the modulo operation";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.UTILITIES;
 	}
 }

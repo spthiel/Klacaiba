@@ -1,17 +1,11 @@
 package me.spthiel.klacaiba.module.events;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.BossInfoClient;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateBossInfo;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.BossInfo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import me.spthiel.klacaiba.base.BaseCustomEvent;
-import me.spthiel.klacaiba.base.PacketListeningEvent;
+import me.spthiel.klacaiba.module.actions.base.BaseCustomEvent;
+import me.spthiel.klacaiba.module.events.base.PacketListeningEvent;
 import me.spthiel.klacaiba.utils.PacketListener;
 
 public class EventOnBossBar extends BaseCustomEvent<SPacketUpdateBossInfo> implements PacketListeningEvent {

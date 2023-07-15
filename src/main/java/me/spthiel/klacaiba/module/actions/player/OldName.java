@@ -11,7 +11,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Arrays;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.Json;
 
 public class OldName extends BaseScriptAction {
@@ -133,5 +134,11 @@ public class OldName extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Array with old names of playerr";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.UTILITIES;
 	}
 }

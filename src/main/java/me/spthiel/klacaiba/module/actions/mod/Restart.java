@@ -1,14 +1,13 @@
 package me.spthiel.klacaiba.module.actions.mod;
 
-import net.eq2online.macros.core.Macro;
-import net.eq2online.macros.core.executive.MacroActionProcessor;
 import net.eq2online.macros.scripting.api.*;
 
 import javax.annotation.Nonnull;
 
 import java.lang.reflect.Field;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Restart extends BaseScriptAction {
 	
@@ -57,5 +56,11 @@ public class Restart extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

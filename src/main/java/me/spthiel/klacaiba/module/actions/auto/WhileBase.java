@@ -2,7 +2,6 @@ package me.spthiel.klacaiba.module.actions.auto;
 
 import net.eq2online.macros.scripting.ScriptActionBase;
 import net.eq2online.macros.scripting.actions.lang.ScriptActionIf;
-import net.eq2online.macros.scripting.actions.lang.ScriptActionUntil;
 import net.eq2online.macros.scripting.actions.lang.ScriptActionWhile;
 import net.eq2online.macros.scripting.api.IMacro;
 import net.eq2online.macros.scripting.api.IMacroAction;
@@ -13,7 +12,7 @@ import javax.annotation.Nonnull;
 
 import java.lang.reflect.Field;
 
-import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.module.actions.base.IDocumentable;
 
 public class WhileBase extends ScriptActionWhile implements IDocumentable {
 	

@@ -10,8 +10,7 @@ import net.minecraft.client.Minecraft;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseConditionalOperator;
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.module.actions.base.BaseConditionalOperator;
 
 public class IfCanHarvestBlock extends BaseConditionalOperator {
 	

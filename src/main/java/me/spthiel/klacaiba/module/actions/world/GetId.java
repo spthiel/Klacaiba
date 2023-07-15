@@ -16,7 +16,8 @@ import javax.annotation.Nonnull;
 
 import java.util.Set;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class GetId extends BaseScriptAction {
 	
@@ -118,5 +119,11 @@ public class GetId extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Returns the name of the block.";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

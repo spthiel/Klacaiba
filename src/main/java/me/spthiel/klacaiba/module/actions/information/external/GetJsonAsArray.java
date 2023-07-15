@@ -2,12 +2,10 @@ package me.spthiel.klacaiba.module.actions.information.external;
 
 import me.spthiel.klacaiba.JSON.JSONArray;
 import me.spthiel.klacaiba.JSON.JSONObject;
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 import net.eq2online.macros.scripting.api.*;
-import net.eq2online.macros.scripting.parser.ScriptAction;
-import net.eq2online.macros.scripting.parser.ScriptContext;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -92,5 +90,11 @@ public class GetJsonAsArray extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Array of elements each entry being in the format KEY:VALUE";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.EXTERNALS;
 	}
 }

@@ -1,8 +1,5 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
-import net.eq2online.macros.scripting.actions.lang.ScriptActionLcase;
-import net.eq2online.macros.scripting.actions.lang.ScriptActionUcase;
-import net.eq2online.macros.scripting.actions.lang.ScriptActionWait;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptAction;
 import net.eq2online.macros.scripting.parser.ScriptContext;
@@ -16,8 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.module.actions.base.IDocumentable;
 
 
 public class Http extends ScriptAction implements IDocumentable {

@@ -1,15 +1,14 @@
 package me.spthiel.klacaiba.module.actions.information;
 
 import net.eq2online.macros.scripting.api.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.network.NetworkPlayerInfo;
 
 import javax.annotation.Nonnull;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class FormatNumber extends BaseScriptAction {
 	
@@ -58,5 +57,11 @@ public class FormatNumber extends BaseScriptAction {
 		NumberFormat f = new DecimalFormat(format);
 		
 		return new ReturnValue(f.format(number));
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.UTILITIES;
 	}
 }

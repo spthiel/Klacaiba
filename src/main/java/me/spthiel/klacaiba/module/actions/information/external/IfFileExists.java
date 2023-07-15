@@ -1,6 +1,6 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
-import me.spthiel.klacaiba.base.BaseConditionalOperator;
+import me.spthiel.klacaiba.module.actions.base.BaseConditionalOperator;
 import me.spthiel.klacaiba.utils.FilePath;
 import net.eq2online.macros.compatibility.I18n;
 import net.eq2online.macros.scripting.api.IExpressionEvaluator;

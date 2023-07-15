@@ -8,7 +8,8 @@ import net.minecraft.client.Minecraft;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class GetBreakTime extends BaseScriptAction {
 	
@@ -50,5 +51,11 @@ public class GetBreakTime extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "ticks to break the block or 0 if unbreakable";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.WORLD;
 	}
 }

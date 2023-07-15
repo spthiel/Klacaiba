@@ -9,8 +9,7 @@ import net.eq2online.macros.scripting.parser.ScriptContext;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.module.actions.base.IDocumentable;
 
 public class Await extends ScriptAction implements IDocumentable {
 	

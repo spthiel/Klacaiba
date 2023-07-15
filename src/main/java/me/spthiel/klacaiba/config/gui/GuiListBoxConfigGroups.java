@@ -13,7 +13,7 @@ import java.util.List;
 
 import me.spthiel.klacaiba.config.ConfigGroups;
 
-public class GuiListBoxConfigGroups extends GuiListBox<String> implements IClickable<GuiListBoxConfigGroups> {
+public class GuiListBoxConfigGroups extends GuiListBox<ConfigGroups> implements IClickable<GuiListBoxConfigGroups> {
 	
 	private final List<Runnable> callbacks = new LinkedList<>();
 	
@@ -26,7 +26,7 @@ public class GuiListBoxConfigGroups extends GuiListBox<String> implements IClick
 		this.iconSpacing = 18;
 		int id = 0;
 		for (ConfigGroups configGroup : ConfigGroups.values()) {
-			this.addItem(new ListEntry<>(id++, configGroup.getName()));
+			this.addItem(new ListEntry<>(id++, configGroup.getName(), configGroup));
 		}
 	}
 	

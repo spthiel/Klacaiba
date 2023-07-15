@@ -7,14 +7,14 @@ import javax.annotation.Nonnull;
 import java.time.Duration;
 import java.util.HashMap;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.Configurable;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
+import me.spthiel.klacaiba.module.actions.base.IConfigurable;
 import me.spthiel.klacaiba.config.ConfigGroups;
 import me.spthiel.klacaiba.config.ConfigOptionList;
 import me.spthiel.klacaiba.utils.Counting;
 import me.spthiel.klacaiba.utils.Utils;
 
-public class Counter extends BaseScriptAction implements Configurable {
+public class Counter extends BaseScriptAction implements IConfigurable {
     
     private static HashMap<Integer, Counting> counters = new HashMap<>();
     private static int                        id       = 0;

@@ -9,7 +9,8 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Push extends BaseScriptAction {
 	
@@ -124,5 +125,11 @@ public class Push extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

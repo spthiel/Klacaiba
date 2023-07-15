@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.Configurable;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.config.ConfigGroups;
 
 public class Countdownto extends BaseScriptAction {

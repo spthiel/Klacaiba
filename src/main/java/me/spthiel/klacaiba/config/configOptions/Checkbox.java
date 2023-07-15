@@ -8,6 +8,10 @@ public class Checkbox extends OptionGroup<Boolean> {
 	
 	private final GuiCheckBox checkbox;
 	
+	public Checkbox(int xPosition, String displayText, boolean checked) {
+		this(xPosition, 18, displayText, checked);
+	}
+	
 	public Checkbox(int xPosition, int groupHeight, String displayText, boolean checked) {
 		super(groupHeight);
 		this.checkbox = new GuiCheckBox(Minecraft.getMinecraft(), 1, xPosition, 0, displayText, checked);

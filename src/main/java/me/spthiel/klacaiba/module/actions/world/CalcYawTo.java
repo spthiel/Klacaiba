@@ -9,8 +9,9 @@ import javax.annotation.Nonnull;
 
 import java.util.Arrays;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.FloatReturnValue;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.ReturnValueDouble;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class CalcYawTo extends BaseScriptAction {
 
@@ -19,7 +20,7 @@ public class CalcYawTo extends BaseScriptAction {
 	}
 
 	public IReturnValue run(IScriptActionProvider provider, IMacro macro, IMacroAction instance, String rawParams, String[] params) {
-		FloatReturnValue retVal = new FloatReturnValue(0);
+		ReturnValueDouble retVal = new ReturnValueDouble(0);
 		if (params.length > 1 && this.mc != null && this.mc.player != null) {
 			if (params.length > 2 && !Variable.isValidVariableName(provider.expand(macro, params[2], false))) {
 				float xPos = getValue(provider, macro, params[0]);
@@ -130,5 +131,11 @@ public class CalcYawTo extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Yaw value to coordinates";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

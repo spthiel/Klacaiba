@@ -1,6 +1,5 @@
 package me.spthiel.klacaiba.module.events;
 
-import net.eq2online.macros.scripting.api.*;
 import net.eq2online.util.Game;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -18,9 +17,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import me.spthiel.klacaiba.ModuleInfo;
-import me.spthiel.klacaiba.base.BaseCustomEvent;
-import me.spthiel.klacaiba.module.variableprovider.VariableProviderHack;
+import me.spthiel.klacaiba.module.actions.base.BaseCustomEvent;
+import me.spthiel.klacaiba.module.events.base.IWorldChangeListener;
+import me.spthiel.klacaiba.module.variableprovider.VariableProviderKlacaiba;
 
 public class EventOnBlockBreak extends BaseCustomEvent<EventOnBlockBreak.BreakEventEntry> implements IWorldEventListener, IWorldChangeListener {
 	
@@ -61,13 +60,13 @@ public class EventOnBlockBreak extends BaseCustomEvent<EventOnBlockBreak.BreakEv
 	@Override
 	protected void init() {
 		
-		VariableProviderHack.registerWorldChangeListener(this);
+		VariableProviderKlacaiba.registerWorldChangeListener(this);
 	}
 	
 	@Override
 	public void terminate() {
 	
-		VariableProviderHack.removeWorldChangeListener(this);
+		VariableProviderKlacaiba.removeWorldChangeListener(this);
 		eventListenedWorlds.forEach(world -> world.removeEventListener(this));
 	}
 	

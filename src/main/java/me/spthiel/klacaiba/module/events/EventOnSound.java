@@ -1,17 +1,13 @@
 package me.spthiel.klacaiba.module.events;
 
 import net.eq2online.macros.scripting.api.*;
-import net.eq2online.macros.scripting.parser.ScriptContext;
-import net.eq2online.macros.scripting.parser.ScriptCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.ISoundEventListener;
 import net.minecraft.client.audio.SoundEventAccessor;
 
-import java.util.*;
-
 import me.spthiel.klacaiba.ModuleInfo;
-import me.spthiel.klacaiba.base.BaseCustomEvent;
+import me.spthiel.klacaiba.module.actions.base.BaseCustomEvent;
 
 @APIVersion(ModuleInfo.API_VERSION)
 public class EventOnSound extends BaseCustomEvent<ISound> implements ISoundEventListener {

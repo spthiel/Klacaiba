@@ -9,7 +9,8 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Sort extends BaseScriptAction {
     
@@ -138,5 +139,11 @@ public class Sort extends BaseScriptAction {
     public String getReturnType() {
         
         return "";
+    }
+    
+    @Override
+    public ConfigGroups getGroup() {
+        
+        return ConfigGroups.MOD;
     }
 }

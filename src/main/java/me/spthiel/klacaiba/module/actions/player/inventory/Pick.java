@@ -9,7 +9,8 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class Pick extends BaseScriptAction {
 	
@@ -83,5 +84,11 @@ public class Pick extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Item ID of the item picked. -1 if none of the items was found.";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

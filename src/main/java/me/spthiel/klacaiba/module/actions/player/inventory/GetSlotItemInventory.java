@@ -11,7 +11,8 @@ import javax.annotation.Nonnull;
 
 import java.util.List;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.Utils;
 
 public class GetSlotItemInventory extends BaseScriptAction {
@@ -60,5 +61,11 @@ public class GetSlotItemInventory extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Item ID of the item in the slot";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.PLAYER;
 	}
 }

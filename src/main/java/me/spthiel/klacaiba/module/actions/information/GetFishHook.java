@@ -6,7 +6,8 @@ import net.minecraft.entity.projectile.EntityFishHook;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.Utils;
 
 public class GetFishHook extends BaseScriptAction {
@@ -74,5 +75,11 @@ public class GetFishHook extends BaseScriptAction {
     public String getReturnType() {
         
         return "y * 1000 or -1";
+    }
+    
+    @Override
+    public ConfigGroups getGroup() {
+        
+        return ConfigGroups.WORLD;
     }
 }

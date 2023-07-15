@@ -12,7 +12,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class CountItem extends BaseScriptAction {
 	
@@ -94,4 +95,9 @@ public class CountItem extends BaseScriptAction {
 		return "Amount of items";
 	}
 	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.PLAYER;
+	}
 }

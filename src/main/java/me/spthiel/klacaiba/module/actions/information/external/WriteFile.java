@@ -1,6 +1,7 @@
 package me.spthiel.klacaiba.module.actions.information.external;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.FilePath;
 import net.eq2online.macros.scripting.Variable;
 import net.eq2online.macros.scripting.api.*;
@@ -89,5 +90,11 @@ public class WriteFile extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Error code or file path on success";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.EXTERNALS;
 	}
 }

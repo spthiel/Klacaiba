@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseConditionalOperator;
+import me.spthiel.klacaiba.module.actions.base.BaseConditionalOperator;
 
 public class IfInInv extends BaseConditionalOperator {
 	

@@ -3,13 +3,12 @@ package me.spthiel.klacaiba.module.actions.auto;
 import net.eq2online.macros.scripting.actions.lang.ScriptActionIf;
 import net.eq2online.macros.scripting.api.IMacro;
 import net.eq2online.macros.scripting.api.IMacroAction;
-import net.eq2online.macros.scripting.api.IMacroActionStackEntry;
 import net.eq2online.macros.scripting.api.IScriptActionProvider;
 import net.eq2online.macros.scripting.parser.ScriptContext;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.module.actions.base.IDocumentable;
 
 public class IfNotBase extends ScriptActionIf implements IDocumentable {
 	

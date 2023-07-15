@@ -6,7 +6,8 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.Utils;
 
 public class GetMouseItem extends BaseScriptAction {
@@ -42,5 +43,11 @@ public class GetMouseItem extends BaseScriptAction {
     public String getReturnType() {
         
         return "Item ID of the held item";
+    }
+    
+    @Override
+    public ConfigGroups getGroup() {
+        
+        return ConfigGroups.PLAYER;
     }
 }

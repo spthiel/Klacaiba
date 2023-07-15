@@ -17,7 +17,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 
 public class SetSlotItem extends BaseScriptAction {
 	
@@ -83,5 +84,10 @@ public class SetSlotItem extends BaseScriptAction {
 		
 		return "";
 	}
-
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.PLAYER;
+	}
 }

@@ -1,6 +1,5 @@
 package me.spthiel.klacaiba.module.actions.mod;
 
-import net.eq2online.macros.scripting.actions.game.ScriptActionTrace;
 import net.eq2online.macros.scripting.api.*;
 import net.eq2online.macros.scripting.parser.ScriptCore;
 import net.eq2online.macros.scripting.variable.providers.VariableProviderTrace;
@@ -10,7 +9,8 @@ import net.minecraft.util.math.RayTraceResult;
 
 import javax.annotation.Nonnull;
 
-import me.spthiel.klacaiba.base.BaseScriptAction;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.EntityUtilities;
 
 public class Trace extends BaseScriptAction {
@@ -88,5 +88,11 @@ public class Trace extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Returns the type of the result, which can be one of the following values: TILE, PLAYER; ENTITY, NONE";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.MOD;
 	}
 }

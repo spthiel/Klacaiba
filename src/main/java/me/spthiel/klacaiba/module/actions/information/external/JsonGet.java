@@ -3,16 +3,11 @@ package me.spthiel.klacaiba.module.actions.information.external;
 import me.spthiel.klacaiba.JSON.JSONArray;
 import me.spthiel.klacaiba.JSON.JSONException;
 import me.spthiel.klacaiba.JSON.JSONObject;
-import me.spthiel.klacaiba.base.BaseScriptAction;
-import me.spthiel.klacaiba.base.IDocumentable;
+import me.spthiel.klacaiba.config.ConfigGroups;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
 import me.spthiel.klacaiba.utils.JsonUtils;
 
-import net.eq2online.macros.scripting.actions.game.ScriptActionTrace;
 import net.eq2online.macros.scripting.api.*;
-import net.eq2online.macros.scripting.parser.ScriptAction;
-import net.eq2online.macros.scripting.parser.ScriptContext;
-import net.minecraft.client.gui.GuiRepair;
-import net.minecraft.inventory.ContainerRepair;
 
 import javax.annotation.Nonnull;
 
@@ -79,5 +74,11 @@ public class JsonGet extends BaseScriptAction {
 	public String getReturnType() {
 		
 		return "Value of specified key of the json";
+	}
+	
+	@Override
+	public ConfigGroups getGroup() {
+		
+		return ConfigGroups.EXTERNALS;
 	}
 }

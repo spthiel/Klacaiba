@@ -5,8 +5,8 @@ import net.minecraft.network.play.server.SPacketChat;
 import net.minecraft.util.StringUtils;
 import net.minecraft.util.text.ITextComponent;
 
-import me.spthiel.klacaiba.base.BaseCustomEvent;
-import me.spthiel.klacaiba.base.PacketListeningEvent;
+import me.spthiel.klacaiba.module.actions.base.BaseCustomEvent;
+import me.spthiel.klacaiba.module.events.base.PacketListeningEvent;
 import me.spthiel.klacaiba.utils.PacketListener;
 
 public class EventOnChat extends BaseCustomEvent<ITextComponent> implements PacketListeningEvent {

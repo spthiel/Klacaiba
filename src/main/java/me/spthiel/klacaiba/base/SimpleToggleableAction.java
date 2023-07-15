@@ -3,8 +3,10 @@ package me.spthiel.klacaiba.base;
 import net.eq2online.macros.scripting.api.*;
 
 import me.spthiel.klacaiba.config.ConfigOptionList;
+import me.spthiel.klacaiba.module.actions.base.BaseScriptAction;
+import me.spthiel.klacaiba.module.actions.base.IConfigurable;
 
-public abstract class SimpleToggleableAction extends BaseScriptAction implements Configurable {
+public abstract class SimpleToggleableAction extends BaseScriptAction implements IConfigurable {
 	
 	private IScriptAction parent;
 	

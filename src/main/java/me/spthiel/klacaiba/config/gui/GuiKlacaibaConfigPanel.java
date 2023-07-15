@@ -4,34 +4,38 @@ import net.eq2online.macros.compatibility.I18n;
 import net.minecraft.client.Minecraft;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import me.spthiel.klacaiba.Klacaiba;
+import me.spthiel.klacaiba.base.managers.ConfigurationManager;
+import me.spthiel.klacaiba.config.ConfigGroups;
 import me.spthiel.klacaiba.config.configOptions.*;
 
 public class GuiKlacaibaConfigPanel {
 	
-	@SuppressWarnings("rawtypes")
-	private final List<OptionGroup> configElements = new ArrayList<>();
-	private       int               width;
-	private       int               height;
+	private       int                                         width;
+	private       int                                         height;
+	private ConfigurationManager configurationManager = Klacaiba.getKlacaiba()
+																.getConfigurationManager();
+	
+	private ConfigGroups selected = configurationManager.getSelected();
+	private final HashMap<ConfigGroups, List<OptionGroup<?>>> configElements = configurationManager.getConfigElements();
 	
 	public GuiKlacaibaConfigPanel() {
-		
-		this(Minecraft.getMinecraft(), null);
+		configurationManager.registerConfigPanel(this);
 	}
 	
-	GuiKlacaibaConfigPanel(Minecraft minecraft, GuiKlacaibaConfig parentScreen) {
+	public void select(ConfigGroups configGroup) {
 		
-		configElements.add(new Checkbox(4, 18, "Test", false));
-		configElements.add(new Checkbox(4, 18, "Test", true));
-		configElements.add(new NumberField(4, 80, 16, 20, 0, "Number field", 0, 4));
-		configElements.add(new TextField(4, 80, 16, 20, "Test", "Text field"));
+		this.selected = configGroup;
 	}
 	
 	public int getContentHeight() {
 		
-		return this.configElements.stream()
+		return this.configElements.get(selected)
+								  .stream()
 								  .mapToInt(OptionGroup :: getDisplayHeight)
 								  .sum();
 	}
@@ -57,13 +61,15 @@ public class GuiKlacaibaConfigPanel {
 	public void drawPanel(GuiKlacaibaConfig host, int mouseX, int mouseY, float partialTicks) {
 		
 		AtomicInteger y = new AtomicInteger(4);
-		this.configElements.forEach(element -> element.draw(mouseX, mouseY, y.getAndAdd(element.getDisplayHeight())));
-		this.configElements.forEach(element -> element.postRender(mouseX, mouseY));
+		this.configElements.get(selected)
+						   .forEach(element -> element.draw(mouseX, mouseY, y.getAndAdd(element.getDisplayHeight())));
+		this.configElements.get(selected)
+						   .forEach(element -> element.postRender(mouseX, mouseY));
 	}
 	
 	public void mousePressed(GuiKlacaibaConfig host, int mouseX, int mouseY, int mouseButton) {
 		
-		for (OptionGroup element : this.configElements) {
+		for (OptionGroup<?> element : this.configElements.get(selected)) {
 			if (element.mouseClicked(mouseX, mouseY, mouseButton)) {
 				break;
 			}
@@ -94,7 +100,8 @@ public class GuiKlacaibaConfigPanel {
 		//			return true;
 		//		} else {
 		
-		return this.configElements.stream()
+		return this.configElements.get(selected)
+								  .stream()
 								  .filter(InputField.class :: isInstance)
 								  .map(InputField.class :: cast)
 								  .anyMatch(inputField -> inputField.keyTyped(keyChar, keyCode));
